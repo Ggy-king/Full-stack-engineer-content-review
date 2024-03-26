@@ -1,0 +1,36 @@
+/* 全局选择器 一般只做初始化样式 */
+* {
+    font-size: 12px;
+}
+
+/* 元素选择器  标签选择器*/
+
+p {
+    color: aqua;
+}
+
+/* 类选择器 */
+.one-class {
+    font-style: italic;
+}
+.next-class {
+    color: blue;
+}
+
+/* id选择器  具有唯一性只能使用一次，不能使用数字开头*/
+#text {
+    color: cadetblue;
+}
+
+/* 合并选择器，多种选择器中间用逗号连接 */
+h3,span,.next-class {
+    font-size: 40px;
+}
+
+/* 选择器优先级
+    1 全局选择器 0
+    2 元素选择器 1
+    3 类选择器 10
+    4 id选择器 100
+    5 内联样式 1000
+*/
