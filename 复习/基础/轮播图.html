@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        header {
+            height: 40px;
+        }
+
+        main {
+            width: 780px;
+            height: 380px;
+            background-color: #ccc;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .slider {
+            width: 100%;
+            height: 100%;
+            background-color: yellow;
+        }
+
+        @media screen and (max-width: 768px) {
+            main {
+                width: 480px;
+                height: 180px;
+            }
+        }
+
+        @media screen and (min-width:768px) and (max-width:996px) {
+            main {
+                width: 580px;
+                height: 280px;
+            }
+        }
+
+        @media screen and (min-width:996px) {
+            main {
+                width: 780px;
+                height: 380px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <div class="slider"></div>
+    </main>
+</body>
+
+</html>

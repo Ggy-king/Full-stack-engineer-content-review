@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./3模型伪类.css" type="text/css">
+    <style>
+        a:hover {
+            /* 鼠标悬停元素上方效果 */
+        }
+        a:active {
+            /* 鼠标按下为松手效果 */
+        }
+        a:focus {
+            /* 当前焦点元素效果 */
+        }
+        a:checked {
+            /* 已选中元素效果 如复选框单选按钮 */
+        }
+        a::before {
+            /* 元素前面插入内容效果 通常与content搭配 after是插入后面 */
+        }
+        a:first-child {
+            /* 选第一个子元素效果 */
+        }
+        a:nth-child(2) {
+            /* 特定子元素效果 */
+        }
+        a:nth-of-type() {
+            /* 特定类型的元素效果 */
+        }
+    </style>
+</head>
+<body>
+    <!-- margin border padding 盒子模型-->
+    <div class="box"></div>
+
+    <!-- 弹性盒模型-->
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+
+    <!-- 浮动 -->
+    <!-- 定位 -->
+    <div class="ab"></div>
+</body>
+</html>

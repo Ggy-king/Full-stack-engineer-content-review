@@ -13,6 +13,7 @@ p {
 .one-class {
     font-style: italic;
 }
+
 .next-class {
     color: blue;
 }
@@ -23,7 +24,9 @@ p {
 }
 
 /* 合并选择器，多种选择器中间用逗号连接 */
-h3,span,.next-class {
+h3,
+span,
+.next-class {
     font-size: 40px;
 }
 
@@ -34,3 +37,31 @@ h3,span,.next-class {
     4 id选择器 100
     5 内联样式 1000
 */
+
+
+/* 关系选择器
+    1 后代选择器
+    2 子代选择器
+    3 相邻兄弟选择器
+    4 通用兄弟选择器
+*/
+/* 1后代选择器 */
+ul li {
+    /* 通俗的讲只要是ul里面的li标签都会生效无关中间隔了多少层其他标签 */
+    color: blueviolet;
+}
+
+/* 2 子代选择器 */
+ul>div {
+    color: aqua;
+}
+
+/* 3 相邻兄弟 选择同级别相邻的第一个兄弟缘元素 使用率低 */
+span+h2 {
+    color: red;
+}
+
+/* 4 相邻通用兄弟 选择同级别下所有兄弟缘元素 */
+span~h2 {
+    color: yellow;
+}

@@ -57,9 +57,21 @@
     /* 首行缩进 */
     text-indent: 2em;
 }
+
 table {
-    
+    /* 边框折叠塌陷 */
+    border-collapse: collapse;
+    width: 500px;
+    height: 300px;
 }
-table,td {
+
+table,
+td {
     border: 1px solid red;
+}
+
+td {
+    text-align: center;
+    /* 垂直对齐方式 */
+    vertical-align: baseline;
 }

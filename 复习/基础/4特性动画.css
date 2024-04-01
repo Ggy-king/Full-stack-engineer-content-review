@@ -1,0 +1,45 @@
+.radius {
+    border-radius: 100%;
+    border-radius: 50%;
+    border-radius: 10px 5px 20px 15px;
+}
+
+.shadow {
+    /* box-shadow: 水平位置 垂直位置 模糊距离 颜色; */
+    /* 还是比较好调整的水平垂直两个数值正常理解就行，模糊距离可以理解为模糊强度 颜色一般像下面这样写就行 */
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, .5);
+}
+
+
+/* @keyframes name {
+    from/0%{}
+    ...
+    to/100%{}
+} */
+
+@keyframes myAnim {
+    0% {
+        background-color: red;
+    }
+
+    50% {
+        background-color: blue;
+    }
+
+    100% {
+        background-color: yellow;
+    }
+}
+
+
+.animation {
+    width: 400px;
+    height: 400px;
+    background-color: red;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: myAnim 3s linear 0s infinite;
+}
+
+.animation:hover {
+    animation-play-state: paused;
+}
