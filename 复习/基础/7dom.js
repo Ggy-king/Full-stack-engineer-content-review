@@ -32,8 +32,71 @@ document.nodeType  //9   查看当前的节点类型
  *  
  */
 
-// 插入元素
+// 3 插入元素
 // let newDiv = document.createElement("div");
 // let content = document.createTextNode("hello")
 newDiv.appendChild(content);   //插入元素标签或文本内容
 document.setAttributeNode()  //插入属性 记住是属性 css属性 id属性等
+
+/**
+ * 4 Element对象属性  Element就是元素标签 你在js中获取之后点就是了
+ *  Element.id  
+ *  Element.className 一整个的class注意添加时要带上之前的 他是覆盖的 
+ *  Element.classList 添加add()和删除remove()查看是否含有contains()移入和移出toggle() 的对象集合
+ *  Element.innerHTML  设置读取都可以
+ *  Element.innerText 与上面的区别是text无法识别标签
+ */
+
+root.classList.add("box")
+
+
+/**
+ * 5 Element获取元素位置
+ *  Element.clientWidth 获取元素自身宽度只包括padding
+ *  Element.clientHeight
+ *  Element.scrollWidth 与clientWidth基本用法一致 无需多记
+ *  Element.scrollHeight
+ *  Element.scrollTop 上下滚动高度 注意是已经滚动的高度 可实时
+ *  Element.scrollLeft
+ *  Element.offsetWidth 获取元素自身宽度包括padding 和 border
+ *  Element.offsetHeight
+ *  Element.offsetLeft 到定位父级元素的左边界的距离
+ *  Element.offsetTop
+ */
+// clientHeight常用于获取页面的高度与视口的高度
+document.body.clientHeight;
+document.documentElement.clientHeight; //视口高度
+// 常用
+root.scrollTop
+root.offsetLeft
+root.offsetTop
+
+
+/**
+ * 6 css设置
+ *  root.setAttribute('style','color:red;border:none;') 
+ *  root.style.width = "300px"
+ *  root.style.cssText = "color:red;border:none;"
+ */
+
+/**
+ * 7 事件处理程序
+ *  html事件 <button id="btn" onclick = "dome()">点击html事件直接写</button>
+ *  dom0级事件 btn.onclick = function(){}
+ *  dom2级事件 bth.addEventListener("click",function(){})
+ */
+
+/**
+ * 8 鼠标事件
+ *  click 点击
+ *  dblclick 双击
+ *  mousedown 按下不松
+ *  mouseup 抬起
+ *  mousemove 移动 连续触发
+ * 
+ *  mouseenter 进入触发 子子不触发
+ *  mouseleave 离开触发 子子不触发
+ *  mouseover 进入触达 子子再触发
+ *  mouseout 离开触发 子子再触发
+ *  wheel 滚轮触发
+ */

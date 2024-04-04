@@ -11,7 +11,6 @@
             padding: 0;
         }
 
-
         header {
             height: 40px;
         }
@@ -28,6 +27,39 @@
             width: 100%;
             height: 100%;
             background-color: yellow;
+            position: relative;
+        }
+
+        img {
+            /* float: left; */
+            /* display: none; */
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, .5);
+            border: none;
+            border-radius: 50%;
+        }
+
+        .btn:hover {
+            cursor: pointer;
+        }
+
+        .left {
+            position: absolute;
+            top: 45%;
+            left: 4px;
+        }
+
+        .right {
+            position: absolute;
+            top: 45%;
+            right: 4px;
         }
 
         @media screen and (max-width: 768px) {
@@ -56,8 +88,20 @@
 <body>
     <header></header>
     <main>
-        <div class="slider"></div>
+        <div class="slider">
+            <img src="https://b0.bdstatic.com/90533f33d945f0a392601c52f817cc75.jpg@h_1280" alt="美女1">
+            <img src="https://img1.baidu.com/it/u=3355173440,1409243595&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
+                alt="美女2">
+            <img src="https://img1.baidu.com/it/u=3380931104,1629142085&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
+                alt="美女3">
+            <button class="btn left"></button>
+            <button class="btn right"></button>
+        </div>
     </main>
 </body>
+<script>
+    let imgs = document.querySelectorAll(".slider img");
+    // imgs[0].style.display = "none";
+</script>
 
 </html>
