@@ -100,3 +100,13 @@ root.offsetTop
  *  mouseout 离开触发 子子再触发
  *  wheel 滚轮触发
  */
+
+/**
+ * 9 event事件
+ *  event事件对象就是function(e)里的参数e
+ *  e.target  返回当前点击的节点
+ *  e.type 获取当前的事件类型 如单击移动等
+ * 
+ *  e.preventDefault() 阻止默认事件 如点击a标签后默认跳转
+ *  e.stopPropagation() 阻止事件冒泡 冒泡其实就是嵌套标签一层一层向上传递 点击子标签父标签也会被点击工作
+ */
