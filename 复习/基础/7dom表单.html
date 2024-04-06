@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    注意表单提交后网址显示为如下
+    /服务器地址?username=...
+
+    <!-- <form action="服务器地址" id="form" onsubmit="submitHandle"> -->
+    <form action="服务器地址" id="form">
+        <input type="text" name="username" id="">
+
+        <!-- 加上type类型后方法自动生成 -->
+        <button type="reset">重置</button>
+        <button type="submit">提交</button>
+    </form>
+
+
+    <script>
+        let form = document.getElementById("form")
+        // form.reset()
+        // function submitHandle(params) {
+            
+        // } 
+    </script>
+</body>
+
+</html>

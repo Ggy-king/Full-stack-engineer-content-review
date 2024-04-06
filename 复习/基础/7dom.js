@@ -105,8 +105,41 @@ root.offsetTop
  * 9 event事件
  *  event事件对象就是function(e)里的参数e
  *  e.target  返回当前点击的节点
+ *  e.target.value 当前节点里面的值
  *  e.type 获取当前的事件类型 如单击移动等
  * 
  *  e.preventDefault() 阻止默认事件 如点击a标签后默认跳转
  *  e.stopPropagation() 阻止事件冒泡 冒泡其实就是嵌套标签一层一层向上传递 点击子标签父标签也会被点击工作
  */
+
+/**
+ * 10 键盘事件
+ *  keydown 按下触发
+ *  keypress 按下触发(仅有值能触发 ctrl alt shift tab等这些无值不触发)
+ *  keyup 抬起触发
+ *  e.keyCode 按键标识 如 e.keyCode === 13  为回车键
+ *  
+ */
+
+/**
+ * 11 表单事件
+ *  input input事件会连续触发 常用为<input><select><textarea><input type=checkbox/radio>
+ *  select 选中内容时会触发事件 如<input><textarea>中选中文本时
+ *  change 值发生改变时触发 失去焦点或回车时才会触发 
+ *  reset submit 这两个事件是发生在form表单上的与上面的不同 reset重置时触发 submit提交时触发  
+ *  发生在form表单上 这个要注意该方法是指要获取form的节点再.reset()才能触发 
+ */
+
+/**
+ * 12 事件代理/事件委托
+ *  把子节点的监听函数定义在父节点上，利用事件冒泡机制
+ *  event.target.tagName 获取的是大写标签字母 如 LI P 注意是标签字母而不是标签
+ */
+
+var ul = document.querySelector("ul");
+ul.addEventListener("click", function (e) {
+  if(e.target.tagName === "LI"){
+    console.log(e.target.innerHTML);
+  }
+
+})
