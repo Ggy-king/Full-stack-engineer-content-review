@@ -13,14 +13,12 @@ clearTimeout(time)  //取消定时器
 // 2 防抖 debounce 常用于页面resize事件-页面适配
 // 防抖其实就是防止过多次的向服务器发送请求防止浏览器卡死 这个需求很常见需要记住  （浏览器性能有限）
 //   滚动事件举例子
-window.onscroll = scrollHandle;
-function scrollHandle(e) {
+window.onscroll = debounce(scrollHandle,300);
+function scrollHandle() {
     let scrollTop = document.documentElement.scrollTop;  //onscroll执行频率太高
     console.log(scrollTop);
 
 }
-
-// 解决办法 在短时间内只执行一次函数 设时间限制
 function debounce(fn, delay) {
     let timer = null;
     return function () {
@@ -31,6 +29,8 @@ function debounce(fn, delay) {
 
     }
 }
+// 解决办法 在短时间内只执行一次函数 设时间限制
+
 // window.onscroll = debounce(scrollHandle,200);
 
 // 3 节流 throttle 常用于input事件-固定间隔时间搜索

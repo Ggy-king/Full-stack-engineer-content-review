@@ -149,7 +149,25 @@ function date() {
 }
 // 还剩多少天过年
 let today = new Date()
-let endYear = new Date(today.getFullYear,11,31,23,59,59,999) //11月31日23时59分59秒999毫秒
-let msPerDay = 24*60*60*1000; //毫秒转换成天数的进制
+let endYear = new Date(today.getFullYear, 11, 31, 23, 59, 59, 999) //11月31日23时59分59秒999毫秒
+let msPerDay = 24 * 60 * 60 * 1000; //毫秒转换成天数的进制
 let result = (endYear.getTime() - today.getTime()) / msPerDay; //getTime()的意图是让结果准确 要不然它会自动省略毫秒单位
 
+/**
+ * 14 map方法 
+ *  数组方法 根据特定条件返回一个新的数组
+ *  场景多应用于 一一映射并返回新数组
+ * 
+ *  形参多的赋值undefined 可以剩余参数来解决问题
+ */
+let arr = [10, 2, 35, 42];
+let resultArr = arr.map((val, index) => {    //index为下标
+    return val + 10
+})
+let newObj = obj.map(obj => {
+    return {
+        name:obj.name,
+        age:obj.age,
+        id:Math.floor(Math.random() * (100 - 50 + 1) + 50)  //添加一个id 随机数在50-100之间
+    }
+})
