@@ -57,7 +57,7 @@ getSum(1, 2, 5, 6, 8, 9)
  * 
  *  以前this 谁调用指向谁
  *  箭头函数中没有this 箭头函数只会沿用上一层作用域的this 注意：是沿用上一层的this指向，而不是指向上一层
- */
+ */ 
 
 6
 /**
@@ -109,5 +109,11 @@ function Pig(name, age, gender) {
     this.gender = gender
 
 }
-const Lucy = new Pig('露西', 19, '女')
-const Daw = new Pig('大卫', 21, "男")
+const lucy = new Pig('露西', 19, '女')
+const daw = new Pig('大卫', 21, "男")
+
+// 1 用构造函数创建的对象成为实例对象 实例对象中的属性和方法称为实例成员
+lucy.adc = "实例的新属性"
+// 2 构造函数的属性和方法就是静态成员
+Pig.abc = "构造函数上的新属性" 
+
