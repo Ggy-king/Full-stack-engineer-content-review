@@ -33,32 +33,35 @@
         }
 
         .slider img {
-            /* float: left; */
-            /* display: none; */
             width: 100%;
             height: 100%;
         }
 
-        .btn {
+        button {
             display: inline-block;
             width: 40px;
             height: 40px;
             background-color: rgba(255, 255, 255, .5);
             border: none;
             border-radius: 50%;
+            display: none;
+        }
+        .slider:hover button{
+            display: block;
         }
 
-        .btn:hover {
+
+        button:hover {
             cursor: pointer;
         }
 
-        .left {
+        #left {
             position: absolute;
             top: 45%;
             left: 4px;
         }
 
-        .right {
+        #right {
             position: absolute;
             top: 45%;
             right: 4px;
@@ -97,24 +100,38 @@
                 alt="美女2">
             <img src="https://img1.baidu.com/it/u=3380931104,1629142085&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
                 alt="美女3">
-            <button class="btn left"></button>
-            <button class="btn right"></button>
+            <button id="left"></button>
+            <button id="right"></button>
         </div>
     </main>
 </body>
 <script>
-    let imgs = document.querySelectorAll(".slider img");
-    let btnLeftHandle = document.querySelector(".left");
-    let btnRightHandle = document.querySelector(".right");
-    let index = 0;
-    btnRightHandle.addEventListener("click",function(){
-        if(index > imgs.length - 1){
-            index = 0;
-        }
-        console.log(index);
-        
-        index++
+    let container = document.querySelector(".slider")
+    console.log(container);
+    let btnLeft = document.getElementById("left")
+    let btnRight = document.getElementById("right")
+    let imgArr = document.querySelectorAll("img")
+    let order = 0;
+    imgArr[order].style.display = "block"
+
+    function next() {
+        imgArr[order].style.display = "none"
+        order >= 2 ? order = 0 : order += 1
+        imgArr[order].style.display = "block"
+    }
+
+    btnRight.addEventListener("click", next)
+    btnLeft.addEventListener("click", function () {
+        imgArr[order].style.display = "none"
+        order <= 0 ? order = 2 : order -= 1
+        imgArr[order].style.display = "block"
     })
+
+
+    let automatic = setInterval(next, 3000)
+    container.addEventListener("mouseenter", () => clearInterval(automatic))
+    container.addEventListener("mouseleave", () => automatic = setInterval(next, 3000))
+
 
 </script>
 
