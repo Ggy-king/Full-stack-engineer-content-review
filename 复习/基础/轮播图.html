@@ -46,7 +46,8 @@
             border-radius: 50%;
             display: none;
         }
-        .slider:hover button{
+
+        .slider:hover button {
             display: block;
         }
 
@@ -66,7 +67,7 @@
             top: 45%;
             right: 4px;
         }
-        
+
 
         @media screen and (max-width: 768px) {
             main {
@@ -106,11 +107,12 @@
     </main>
 </body>
 <script>
+    
     let container = document.querySelector(".slider")
-    console.log(container);
     let btnLeft = document.getElementById("left")
     let btnRight = document.getElementById("right")
     let imgArr = document.querySelectorAll("img")
+
     let order = 0;
     imgArr[order].style.display = "block"
 
@@ -119,13 +121,14 @@
         order >= 2 ? order = 0 : order += 1
         imgArr[order].style.display = "block"
     }
-
-    btnRight.addEventListener("click", next)
-    btnLeft.addEventListener("click", function () {
+    function previous() {
         imgArr[order].style.display = "none"
         order <= 0 ? order = 2 : order -= 1
         imgArr[order].style.display = "block"
-    })
+    }
+
+    btnRight.addEventListener("click", next)
+    btnLeft.addEventListener("click", previous)
 
 
     let automatic = setInterval(next, 3000)
