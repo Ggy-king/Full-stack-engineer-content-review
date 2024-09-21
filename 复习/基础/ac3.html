@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 1 属性选择器 用中扩号内加属性选择 */
+        input[value]{
+            color: aqua;
+        }
+
+        /* 2 使用^=实现选出以icon开头的所有属性 */
+        input[name^=icon]{
+            color: red;
+        }
+
+        /* 3 使用$=实现选出以data结尾的所有属性 */
+        input[name$=data] {
+            color: green;
+        }
+
+        /* 4 使用*=实现选择任意包含val的所有属性 */
+        input[name*=val] {
+            vertical-align: center;
+        }
+
+
+        /* 1 伪类选择器 nth-child(n) n可以是公式 n是从0开始加1实现 则2n选偶数 2n+1选奇数 5n选5倍数 n+5选5之后 -n+5选前5个 */
+        ul li:nth-child(n) {
+            background-color: #fff;
+        }
+
+        /* 2 first-of-type 选去指定类型中的第一个孩子 它和child不一样的是child是从后向前读(先找孩子后看前面的父元素)，type是从前向后读(先看父元素后找孩子) */
+        ul div:first-of-type {
+            background-color: #fff;
+        }
+
+
+        /* 1 伪元素选择器(伪元素和伪类元素不一样) ，伪元素是通过css创建新盒子为行内元素 必须要有content属性 权重为1*/
+        div::after{
+           content: '';
+        }
+        /* 鼠标经过div便让div里面的after属性改变   后续又很多类似的写法 当什么什么时候便选出什么什么盒子并改变 */
+        div:hover::after {
+            background-color: black;
+        }
+
+        /* -------------------------------------------------------------------------------- */
+        /* 过度 transition 属性 执行时间 运动方式 何时开始执行  谁来过度给谁加(想要所有属性都变属性设置all) */
+        section {
+            transition: width 2s liner 0s,height 2s ease-in 0s;
+        }
+
+        /* 999 杂项 */
+        .other {
+            
+            box-sizing: border-box;
+
+            /* filtercss是对颜色等做出处理的属性 blur模糊处理 */
+            filter: blur(5px);
+
+            /* calc()为计算函数 100%为父盒子的高度 -150px 即永远比父盒子小150px */
+            width: calc(100% - 150px);
+        }
+
+    </style>
+</head>
+<body>
+    <input type="button" value="属性">
+    <input type="button" >
+    类选择器 属性选择器 伪类选择器的权重都是10
+    input[name$=data] 这种的是要看全 input标签选择器为1 []属性选择器为10 所以input[name$=data]权重是11 
+</body>
+</html>
