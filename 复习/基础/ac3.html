@@ -53,6 +53,83 @@
             transition: width 2s liner 0s,height 2s ease-in 0s;
         }
 
+        /* 变形 transform  移动旋转缩放 */
+        .transform {
+            /* 2D
+            平移 translate */
+            transform: translate(x,y);
+
+            /* 自身旋转 rotate */
+            transform: rotate(45deg);
+
+            /* 变形的中心位置  transform-origin  默认50% 50% */
+            transform-origin: x y;
+
+            /* 缩放 scale x是宽 y是高 */
+            transform: scale(x,y);
+
+        }
+
+        /* 动画 animation */
+        @keyframes anima {
+            0% {}
+            50%{}
+            100%{}
+            /* from{}
+            to{} */
+        }
+        .anima {
+            animation-name: anima;
+
+            /* 持续时间 duration */
+            animation-duration: 2s;
+
+            /* 运动曲线  timing-function*/
+            animation-timing-function: ease;
+
+            /* 何时开始 延迟delay */
+            animation-delay: 2s;
+
+            /* 重复的次数 iteration-count */
+            animation-iteration-count:  infinite;
+
+            /* 方向 direction */
+            animation-direction: alternate;
+
+            /* 结束时状态fill-mode  backwards回到起点 forwards保持结束位置 */
+            animation-fill-mode: backwards;
+
+            /* play-state播放的状态  paused暂停 */
+            animation-play-state: paused;
+
+            animation: anima 4s ease 2s infinite alternate;
+        }
+
+        /* 3D  */
+        .transform {
+            /* 移动带z轴 */
+            transform: translate3d(x,y,z);
+
+            /* 透视 即让父盒子具有特殊效果 使子盒子可以被看见3D效果 */
+            /* 透视写在被观察的父盒子上面 数值越大图像越小*/
+            perspective: 500px;
+
+
+            /* 沿着XYZ轴旋转多少度 */
+            transform: rotateX();
+            transform: rotateY();
+            transform: rotateZ();
+            /* 沿着自定义轴旋转 */
+            transform: rotate3d(x,y,z,45deg);
+            /* 沿着xy轴对角线旋转 */
+            transform: rotate3d(1,1,0,45deg);
+
+
+            /* 3D呈现 写给父盒子，作用是让其下的子盒子可以保持3D效果 */
+            transform-style: preserve-3d;
+        }
+
+
         /* 999 杂项 */
         .other {
             
@@ -63,6 +140,7 @@
 
             /* calc()为计算函数 100%为父盒子的高度 -150px 即永远比父盒子小150px */
             width: calc(100% - 150px);
+            
         }
 
     </style>
@@ -72,5 +150,12 @@
     <input type="button" >
     类选择器 属性选择器 伪类选择器的权重都是10
     input[name$=data] 这种的是要看全 input标签选择器为1 []属性选择器为10 所以input[name$=data]权重是11 
+
+
+    <!-- 1水波 -->
+    要做水波向四周扩散的效果
+    做一个正方形盒子给圆角变圆
+    在用定位做多个圆盒子叠在一起 然后添加阴影效果 并通过放大宽高的方式放大阴影效果实现水波效果
+    波纹淡化的效果用opacity做 70%为1 100%为0
 </body>
 </html>
