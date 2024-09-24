@@ -7,7 +7,7 @@
  * Attribute 网页元素的属性          2
  * Text 标签之间或标签包含的文本      3
  * Comment 注释
- * DocumentFragment 文档的片段      11
+ * DocumentFragment 文档的片段      11 
  */
 
 document.nodeType  //9   查看当前的节点类型
@@ -139,7 +139,7 @@ root.offsetTop
 var ul = document.querySelector("ul");
 ul.addEventListener("click", function (e) {
   if(e.target.tagName === "LI"){
-    console.log(e.target.innerHTML);
+    console.log(e.target.innerHTML)
   }
 
 })
