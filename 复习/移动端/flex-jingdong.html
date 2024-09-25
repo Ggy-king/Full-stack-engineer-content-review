@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .bar {
+            display: flex;
+            max-width: 1200px;
+            min-width: 540px;
+            height: 400px;
+            margin: 100px auto;
+            background-color: #ccc;
+            justify-content: space-between;
+        }
+
+        .bar-left {
+            flex: 2;
+            margin-right: 10px;
+            background-color: red;
+        }
+
+        .content {
+            flex: 5;
+            display: flex;
+            flex-direction: column;
+            background-color: green;
+        }
+
+        .bar-right {
+            flex: 2;
+            margin-left: 10px;
+            background-color: yellow;
+        }
+        nav {
+            flex: 1;
+            margin: 10px 0;
+            background-color: pink;
+        }
+        .introduce {
+            flex: 6;
+            display: flex;
+            justify-content: space-between;
+            background-color: chocolate;
+        }
+        .draw {
+            flex: 1;
+
+            background-color: fuchsia;
+        }
+        .shops {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            margin: 0 10px;
+            background-color: fuchsia;
+
+        }
+        .carts {
+            flex: 1;
+            background-color: fuchsia;
+        }
+        .miaosha {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: aqua;
+        }
+        .baoyou {
+            flex: 1;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bar">
+        <div class="bar-left"></div>
+        <div class="content">
+            <nav></nav>
+            <div class="introduce">
+                <div class="draw"></div>
+                <div class="shops">
+                    <div class="miaosha">
+                        <span>图片</span>
+                        <span>一行文字</span>
+                    </div>
+                    <div class="baoyou"></div>
+                </div>
+                <div class="carts"></div>
+            </div>
+        </div>
+        <div class="bar-right"></div>
+    </div>
+</body>
+<script>
+    
+</script>
+
+</html>
