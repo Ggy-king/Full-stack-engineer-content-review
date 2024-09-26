@@ -1,0 +1,38 @@
+// 1  less变量
+@color: #ccc;
+@font20: 20px;
+@width: 10px * 2 + 10;
+
+div {
+    background-color: @color;
+}
+
+
+
+// 2  less编译
+// {插件生成css less只是一个辅助工具} 
+
+
+
+// 3  less嵌套
+// 没有&符号则一律看成后代
+header {
+    width: @width;
+
+    .nav {
+        width: 50%;
+
+        &:hover {
+            color: @color;
+        }
+
+        a[name='ni']:checked {
+            text-decoration: none;
+        }
+    }
+}
+
+
+
+// 4  less运算
+// 运算符的左右一定要有空格
