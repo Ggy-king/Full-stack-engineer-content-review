@@ -1,0 +1,39 @@
+# 利用git上传文件 以gitee为例
+
+1 第一步进行全局配置 (如果你是一次都没有用过需要配置)
+
+git config --global user.name "Ggy-king"
+git config --global user.email "10710254+ggy-king@user.noreply.gitee.com"
+
+2 初始化 (创建了本地的git)
+
+git init 
+
+3 添加文件 (添加本地项目文件到本地git)
+
+git add .
+
+4 提交更改 (可以理解是告诉本地git我已经全部提交好了 可以上传了)
+
+git commit -m "提交信息"
+
+5 连接远程仓库
+
+git remote add origin <仓库的链接 通常这个网址后面有个.git>
+
+6 传送 (master为默认分支 如果是别的要换成别的)
+
+git push -u origin master
+
+
+
+other 其他
+# 查看仓库 项目的提交状态等
+git status
+# 查看提交历史
+git log
+# 尝试获去最新更改fetch 并进行与本次的传送合并
+git fetch origin  
+git merge origin/master
+# 强制更改 即覆盖 
+git push -u origin master --force
