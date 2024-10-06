@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    html {
+        scroll-behavior: smooth;
+        /* 让我们的滚动条丝滑的滚动起来 就等于让滚动条添加了transform */
+    }
+</style>
+
+<body>
+    <dl data-custom="自定义111">
+        <dd>1</dd>
+        <dd>2</dd>
+    </dl>
+    <script>
+        111111
+        const content = document.querySelector('.content')  // 选取后返回的是一个对象
+        const arr = document.querySelectorAll('dl dd')  // 选取后返回的是一个数组
+        arr[0].style['background-color'] = 'red'
+        arr[0].style.backgroundColor = 'red'
+
+        // body页面就一个不需要获取
+        document.body.style
+        document.documentElement  === html
+
+        content.className('box nav')  // 会覆盖之前的class
+
+        // 新增classList 推荐使用
+        content.classList.add()  // 添加一个类
+        content.classList.remove()  //删除一个类
+        content.classList.toggle()  //切换类 有则删掉，无则加上    非常常用！！！
+
+        // 复选框通过js改变其选中的状态  checked设为true即可
+        ipt.checked = true
+        // disabled类似  设为true则禁用
+        btu.disabled = true
+
+        // 自定义属性  data-  开头都是自定义属性  通过dataset对象拿到自定义的属性
+        document.querySelector('dl').dataset.custom   // 自定义111
+
+
+        2222222
+        let m = setInterval(() => {
+        }, interval)    // 每隔一段时间执行以下  
+        clearInterval(m)  // 定时器要养成习惯 先关再开
+
+        // 函数执行完之后，垃圾回收即里面无用的变量都回被清除 外部只要没有用到这个变量都是无用 所以函数内部也可以大量使用const
+
+        // 以前的事件写法 后面的会覆盖前面的 而且只能做冒泡不能做捕获
+        btn.onclick = function () { }
+
+        // 新函数写法 还有第三个参数默认不写则是false    false是冒泡机制，简而言之是可以确保执行的是我们当前的盒子然后向外执行 true是捕获机制点击当前盒子向里执行
+        // 冒泡和捕获都会执行其他子或父盒子 所以有时候需要阻止
+        int.addEventListener('focus', () => { }, true)
+        int.addEventListener('blur', (e) => {
+            e.stopPropagation()  //     阻止事件流动 冒泡捕获都阻止   是事件对象里的方法
+            e.preventDefault();   // 阻止默认事件 像from a
+            
+        }, false)
+
+        btn.onclick = null  // 事件解绑
+        int.removeEventListener('blur', fn())  // !!!匿名函数无法被解绑    解绑(解绑事件，解绑函数)
+
+
+        3333333
+        // 轮播图的思想需要改 自动播放是调用click()事件完成的，并不需要你继续对公共i(i是轮播图里的变量控制是哪一张图片)进行研究
+
+        // 环境对象 是this
+        // 事件对象 就是event
+        btn.addEventLister('click', function (e) {
+            e.type
+            e.clientX  // 光标的x轴位置
+            e.clientY
+            e.offsetX // 光标相对于当前Dom的x轴位置
+            e.offsetY
+            e.key === 'Enter' // 用户当前按下的键 返回的是直接就是键的名字字符串 keyCode返回的是码但已废弃
+        })
+
+
+        // 当函数被作为参数传入到另一个函数时称之为回调函数  addEventLister setInterval里面的函数都是回调函数
+
+        // 复选框案例
+        const checkAll = document.querySelector('.check-all')
+        const cks = document.querySelectorAll('.ck')
+        checkAll.addEventListener('click', function () {
+            for (let i = 0; i < cks.length; i++) {
+                cks[i].checked = this.checked
+            }
+        })
+        for (let i = 0; i < cks.length; i++) {
+            cks[i].addEventLister('click', function () {
+                checkAll.checked = document.querySelectorAll('.ck:checked').length === cks.length
+            })
+        }
+
+
+        4444444
+        // mouseenter mouseleave 无冒泡
+        // mouseover mouseout  有冒泡
+
+        // 事件代理 简单来说就是不给每个孩子添加事件 而是只给父盒子添加事件 因为子元素执行时会冒泡到父元素上 执行父元素
+        // 就是小li身上虽然没有点击事件 但是会冒泡到父元素身上
+        // 注意几乎所有的html元素都具备天生的冒泡能力 不需要额外添加事件
+        ul.addEventListener('click', function (e) {
+            if (e.target.tagName === 'LI') {    // e.target.tagName拿到当前点击元素的标签名
+                e.target.style.color = 'red'   // e.target 拿到当前元素
+            }                                  // e.target 其实就等于子盒子里的this 你可以用控制台打印看看有哪些属性和方法 基本和元素对象里的大差不差
+        })
+
+ 
+        // 想要预先加载js资源   load
+        window.addEventListener('load',function () {
+            // 这里的代码会等待所有资源都执行完在执行
+        })
+        window.addEventListener('DOMContentLoaded',function(){
+            // 无需等待样式 图像加载 而是直接执行
+        })
+
+
+        5555555555
+        // 页面滚动事件
+        window.addEventListener('scroll',function(e) {
+            // window里是让html滚动
+            const n = document.documentElement.scrollTop   //页面滚动万古不变的语句
+            window.scrollTo(0,0)
+
+            document.documentElement.scrollTop = document.querySelector(`.box_${e.target.dataset.name}`).offsetTop
+            // 不用索引号是为了防止写的太死
+        })
+
+        // 页面尺寸事件 resize  以前没有媒体查询都是用resize做的
+        window.addEventListener('resize',function() {
+            content.clientWidth  // 只包含padding的盒子的宽度   
+            content.offsetWidth  // 包含padding和边框  
+
+            content.offsetTop  // 获取自己与带有定位的父盒子的向上距离   常用的
+
+            content.getBoundingClientRect().top  // 这个方法获取的位置都是相对于视口的   记住视口是你能看见的区域 子盒子划走了 在视口里看不见了则它的top就是负值了
+            
+        })
+
+
+        // 实例化
+        const date = new Date()
+        date.toLocaleString()  // 2024/9/9 18:10:52
+        date.toLocaleDateString()   // 2024/9/9
+        date.toLocaleTimeString()  // 18:10:52
+
+        // 时间戳最大的作用就是运算 因为有时间的格式不好加减
+        // 三种获取时间戳的方法
+        date.getTime()
+        +new Data()  // 推荐   
+        Date.now()  // 不推荐
+
+        const now = +new Date()
+        const last = +new Date('2025-1-1 18:30:00')
+        const count = ( last - now) / 1000   // 因为时间戳是毫秒为单位 所以除1000转换为秒
+
+
+        666666666
+        // 节点
+        content.parentNode   // 父节点 返回的还是对象 没有区别
+        content.parentNode.parentNode   // 爷爷
+        content.children   // 子节点 注意不要用childNodes 它获取的是所有的子节点包括文本节点属性节点  要用children只获取元素节点
+        content.children   // 得到最近一级的孩子 是最近一级的所有孩子不是第一个孩子 返回伪数组！！！
+        content.nextElementSibling  // 下一个兄弟节点
+        content.previousElementSibling   // 上一个兄弟节点
+
+
+        const div = document.createElement('div')    // 创建节点
+        content.appendChild('div')                   // 追加节点  最后父元素里的最后一个子元素 就是追加进来的
+        content.insertBefore(div,content.children[0])  // insertBefore将什么插入到什么之前  这个写法保证每次都是最前面的
+
+        content.cloneNode(true)  // 深克隆 后代元素都克隆   克隆一般用在轮播图
+
+        content.removeChild('div')  // 删除节点是要通过父元素删除子元素 就像添加一样
+
+
+        7777777777
+        // M端事件 就是移动端
+        // touch事件
+        content.addEventListener('touchstart',function (e) {})  // 触摸
+        content.addEventListener('touchend',function (e) {})   // 离开
+        content.addEventListener('touchmove',function (e) {})  // 一直摸 滑动
+
+        // 轮播图一般用插件
+         
+    </script>
+</body>
+
+</html>
