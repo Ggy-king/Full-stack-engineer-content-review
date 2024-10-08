@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="bom"></div>
+    window 最大的全局的对象 旗下有
+    1 navigator
+    2 location
+    3 document 
+    4 history
+    5 screen
+
+    <a href="#/friend"></a>
+    <script>
+        const div = document.querySelector('.toggle')
+
+        1111111
+        setTimeout()   // 延迟函数  它和间歇函数都是bom里的
+
+        // 像普通事件click resize   资源加载load error 定时器   都是异步的！！！  异步任务要放在任务队列中
+
+        // js都是先执行栈中的同步任务 把栈中的异步任务放到任务队列中  栈中同步任务执行完再依次执行异步任务
+        // 说白了js就是单线程 浏览器可以多线程 任务队列的都是浏览器再看 js同步执行完之后浏览器把异步的推进js中执行
+        // 事件循环 even loop   就是主线程执行完同步任务 去任务队列中去取异步任务来执行 只要异步队列中有就取 一直重复
+
+        // location 一般用他做js跳转网页   它是浏览器保存网页链接的属性
+        location.href  = 'https://www.baidu.com'
+
+        location.search    // 拿到?后面的网页链接信息  携带的参数
+        location.hash    // 拿到#后面的网页链接信息  单页面应用  哈希值
+        location.reload(true)  // 刷新页面  传入true强制刷新 就是不从我们本地传数据而是重新访问网址拿资源
+
+        // navigator 就是浏览器的相关信息
+        navigator.userAgent  // 拿到当前浏览器的版本和平台  可以做判断不用浏览器访问不同网址
+
+
+        // history 主要管理历史记录 地址栏的前进后退
+        history.back()  // 后退
+        history.forward()  // 前进
+        history.go(-1) // 后退
+        history.go(1) // 前进
+
+
+
+        22222222222
+        // localStorage.setItem('键','值')  本地存储数据   本地数据只能存储字符串格式所以复杂类型不能直接存储 后续就引出json概念
+        localStorage.setItem('uname','gao')  // 增 改都用这个 重新赋值即可
+        localStorage.getItem('uname')  
+        localStorage.removeItem('uname')
+        localStorage.clear()   // 全部删除
+        
+        localStorage.setItem('obj',JSON.stringify(obj))  // 将对象转换为JSON格式的字符串 已经变成字符串了 属性和值都有统一的双引号
+        JSON.parse(localStorage.getItem('obj'))  // 再将JSON格式的转化为对象格式
+        
+        
+        
+        // sessionStorage 也是本地存储 但是其在窗口关闭后就消失 一般用localStorage
+
+        33333333333
+        // 用map()和join() 实现字符串的拼接更为常见
+        const newArr = arr.map(function(ele,index) {   // map最大的特点是返回新数组 ele就是原数组每个元素 index就是索引号
+            return ele + '拼接'
+        })
+        // 用map向页面添加新元素 其实就是取代了之前用for循环遍历数组的做法
+        tbody.innerHTML = newArr.join('')  // newArr是数组 用join变成字符串
+
+        arr.join('')   // join就是将数组所有元素连起来成为一个字符串 传什么参数就用什么做为分割  空为逗号 ''为无分割符
+
+
+        4444444444
+        // 正则表达式    正则里面不需要写引号
+        let reg = / /    // 最基本的用法就是里面写一些字符串 然后进行匹配 有就是true
+        reg.test('被检查的字符串')   // 匹配就是true 否则就是false
+        reg.exec('被检查的字符串')  // 类似test 但其返回的是一个数组 有其他功能
+
+
+        reg = /^a/  // 必须以a开头
+        reg = /^a$/  // 必须以a开头 以a结尾 ^$在一起的时候为精确匹配 
+        reg = /^a*$/  // *为a重复0次或多次，依然是精确匹配 就是可以有无数个a但是不能有任何其他数字
+        reg = /^a+$/  // +为a重复1次或多次 *出现字符串为空也可以通过 但是+最低出现一次
+        reg = /^a?$/ // ?为重复0次或1次
+        
+        reg = /^a{4}$/  // {n}表示重复n次  常常用于做验证码验证 {4}
+        reg = /^a{4,}$/ // {n,}表示重复n次以上
+        reg = /^a{4,16}$/  // {n,m}表示重复n到m次之间
+
+        reg = /^[A-Z]$/  // 还是精确匹配 只会匹配其中一个  还是多选一
+        reg = /^[1-9][0-9]{4,}$/  // qq号的写法
+        reg = /^[^1-9][0-9]{4,}$/  // 写在中括号里面的^表示取反的意思 就是除了
+
+        reg = /^[a-zA-Z0-9-_]{6,16}$/  // 英文字母数字下划线短杆 6-16位
+
+        // DWS大的字母都是取反
+        // \d  0-9  \w  A-Za-z0-9_  \s  匹配字符如\t\r\n\v\f
+
+        // 修饰符 就是在/ /后面加的符号
+        reg = /^a$/i   // i 不区分大小写
+        reg = /^a$/g   // g就是全局查找 有几个找几个
+
+        5555555555
+        // 正则表达式常用
+        const re = str.replace(/^\d$/,'要替换成的文本')  // 按什么规则找出符合的文本将str进行替换 返回给re  str.replace(a,b)在str中找出a 将a替换成b
+
+        div.innerHTML = input.value.replace(/激情|垃圾|尼玛/g,'**')  // 过滤敏感词
+
+
+        6666666666
+        // 上锁  节流
+        let flag = true
+        if(flag) {
+            flag = false  // 先锁
+
+            flag = true  // 后开
+        } 
+
+        // 表单常用验证事件change  只有值发生变化才触发
+
+        div.classList.contains()  // 查看div是否包含某个类  有则返回true
+
+        div.addEventListener('mousemove',function(e) {   // 鼠标移动事件
+            e.pageX - div.getBoundingClientRect().left   // 鼠标相对于文档的x距离减去div元素相对于视口x距离
+            e.pageY - div.getBoundingClientRect().top
+
+            e.clientX  //鼠标到视口的距离
+            e.pageX //鼠标到整个文档的距离
+            e.screenX //鼠标相对于整个屏幕的距离
+
+            
+        })
+    </script>
+</body>
+</html>
