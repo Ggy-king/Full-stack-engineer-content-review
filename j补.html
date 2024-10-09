@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1 弹出一个输入对话框 prompt()</li>
+    </ul>
+
+</body>
+<script>
+    // 尽量都写const  其实很多值都是不变的 可以先写const 日后发现变了再改
+    // 数组 对象 其实都可以用const 里面的内容增删改查都不影响
+    // 为什么？ 因为数组 对象的值变的只是堆里面的值 只要栈不变则就是常量就可以用const
+
+
+
+    prompt('请你输入')
+
+    let num = +'123'    // 结果是数字类型123  加号单用则隐式转换成数字类型  或者 +'12' + 12  结果为24 加号当正号看
+
+    Number()   //传入的字符只能有数字 然后转化成数字类型
+    parseInt()  //将其他类型转换成数字类型，然后保留整数的前提下过滤掉其他字符  注意如果其他字符在数字前面则返回NaN
+    parseFloat()
+    num.toFixed(2)  // 保留两位小数
+
+    // 简单数据类型与复杂(引用)数据类型都是保存在栈里面 只不过复杂数据保存在栈里的是一个地址 由地址指向堆  简单数据就是直接把值保存在栈里
+    // 所以说简单数据相互赋值 会新建栈存值互不干扰  复杂数据相互赋值其实给的是栈里面的地址 也会新建栈存地址 所以修改堆里面的值后 指向同一地址的变量都会变
+
+    // 自增是一元运算符
+
+    // 字符字母的比较大小看的是ascii码
+    // a是97 回车是29
+
+    0.1 + 0.2 != 0.3
+    // 小数有精度问题，小数的比较最好化为整数后再比较
+
+    '' - 2 == -2   //true
+    null + 4 == 4   //true
+    null == undefined  //true  但是undefined和任何数字相操作结果都是NaN
+
+    switch (num) {
+        case 2: console.log('对了')
+            break
+        case 3: console.log('错了')
+            break
+        default: console.log('没有符合条件的');
+    }
+    // continue break
+
+    // 九九乘法表
+    for (let i = 1; i <= 9; i++) {
+        let str = ''
+        for (let j = 1; j <= i; j++) {
+            str += `${j} * ${i} = ${i * j} `
+        }
+        console.log(str)
+    }
+
+    arr.pop()  //删除最后一个值
+    arr.unshift()  // 首位增加元素
+    arr.shift() //首位删除元素
+    arr.splice(start, deleteCount)  // (起始位置，删除几个元素)
+
+    // 在函数中都有一个显示返回值return 如果没有写一半默认是隐式返回值  undefined
+    // 除了return 还有其他返回值 箭头函数简写 异常处理try...catch 通过修改全局变量 使用闭包 this关键字
+    return [max, min]   //返回多项值的时候要用数组 因为每个函数只能return一个
+
+
+        // 两种立即执行函数的写法
+        (function () { })()
+        (function () { }())
+
+
+    // 0 undefined null 是假 但是不返回false 而是直接返回其本身！！！！
+    // || 都是假值以最后为准 都是真值以第一个为准     
+    // && 都是假值以第一个为准 都是真值以最后为准
+
+    obj['属性名']   //查对象用中扩号的时候，属性名需要加引号 ！！！
+    for (let key in obj) {
+        console.log(key);    // 属性名
+        console.log(obj[key])  // 只能这样拿到值， 因为key是字符串格式！！！  'age' === key
+    }
+
+    Math.ceil()  //向上取整
+    Math.floor()  //向下取整
+    Math.round()  //四舍五入
+
+
+    Math.floor(Math.random() * (10 + 1))   // 随机取[0-10]之间的数字
+    Math.floor(Math.random() * arr.length)  // 随机取数组中任意一值
+    Math.floor(Math.random() * (M - N + 1)) + N  //随机生成N - M 之间的随机数
+
+
+</script>
+
+</html>
