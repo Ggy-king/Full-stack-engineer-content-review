@@ -171,13 +171,47 @@
         // constructor  这个单词就是构造函数的意思
         Object.prototype.constructor  === Object  // true
 
+
+        // 覆盖式创建
         Array.prototype = {    // 如果用这种写法会直接覆盖原Array.prototype 出现的问题是原来原型链上有的方法属性都没有了 换言之没爹了
             sing:function() {},   // Array.prototype.constructor 没有了
 
 
             constructor: Array   // 最关键的一步 让我们覆盖的原型重新指回原构造函数！！！
         }  
+        // __proto__与[[prototype]]一样（只读不能写）  都是实例对象里指向原型对象的属性 目的是让实例对象可以用到原型链的方法与属性
+        arr.__proto__ === Array.prototype  // true
+
+
+
+        // 继承  有8 9种方式
+        function Per(){
+            this.head = 1
+            this.eyes = 2
+        }
+        function Son() {
+        }
+        Son.prototype = new Per()    // 原型继承  每一次新创建函数都继承父亲的实例也就是new一下 这样每次都是新对象(新实例)
+        Son.prototype.constructor = Son    // 将实例对象再指回构造函数，
+        const son1 = new Son()
+
+
+        // instanceof 是一个运算符 像 < >+-这样的都叫运算符
+        // instanceof 是用来判断某个实例是否在某个上层原型上
+        Son instanceof Per  // false  不知道为什么了把 因为Son并不是Per所创建的对象，Son只是作为函数对象的身份继承自Function(这个可是Object原型链上的).prototype而不是Per.prototype
+        Son instanceof Object  // true
+        son1 instanceof Son  // true 这是对的 instanceof是测实例与原型链的关系 而不是次级构造函数与上级构造函数的关系
+
+
+        5
+        // 浅拷贝可以理解为两种 一种是只是复制了一份相同地址 一种是只能复制一层，像数组对象套对象不能复制
+
+        // 深拷贝有三种
+        // 1 函数递归  递归就是自己调自己 闭包就是内函数加外变量
+        // 递归想要退出直接return即可
         
+        
+
     </script>
 </body>
 
