@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./axios.min.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    const pname = '辽宁省'
+    const cname = '大连市'
+    axios({
+        url: 'https://hmajax.itheima.net/api/area',
+        params: {                  // params就是查询参数  url中?后面的内容
+            pname: pname,
+            cname: cname
+        }
+
+    }).then(result => {
+        console.log(result);
+    })
+
+
+
+    // 1 axios默认get方法
+    // 2 get -> params post -> data
+    axios({
+        url,
+        method: 'post',
+        data: {
+            // 参数名:值
+            username: 'gao'
+        }
+    }).then(result => {    // 获取数据时执行
+
+    }).catch(error => [    // 捕获错误时执行
+        error.response.data.message
+    ])
+</script>
+
+</html>
