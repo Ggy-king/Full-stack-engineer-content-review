@@ -45,7 +45,7 @@ pro.then((val) => {         // 进行下一步的操作用then 第一个参数�
 // -------------------------------
 // 进行封装 让参数可以修改 更灵活  常用写法创建一个参数可控的函数并返回一个新的Promise对象
 function timeOut(ms) {
-    return new Promise(function (resolved, rejected) {
+    return new Promise(function (resolved, rejected) {       // 意思很简单 你用Promise自然得new了，外面你还想用then自然得return出去了
         setTimeout(() => {
             resolved('success')
         }, ms);

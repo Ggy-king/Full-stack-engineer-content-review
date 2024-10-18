@@ -16,7 +16,7 @@
     const cname = '大连市'
     axios({
         url: 'https://hmajax.itheima.net/api/area',
-        params: {                  // params就是查询参数  url中?后面的内容
+        params: {                                                    // params就是查询参数  url中?后面的内容
             pname: pname,
             cname: cname
         }
@@ -41,6 +41,8 @@
     }).catch(error => [    // 捕获错误时执行
         error.response.data.message
     ])
+
+    
 </script>
 
 </html>
