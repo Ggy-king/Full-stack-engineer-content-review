@@ -103,8 +103,8 @@
 
         Person.sayHello = function () { }  // 注意 这是在构造函数身上添加静态属性和方法的写法 也是标准写法。注意实例不会继承只有Person自己才能调用
         // 还需要知道的是js中只能这么添加静态属性和方法 其他的很麻烦并且不常用
-        
-        Person.prototype.sayHello = function() {}  //非常常见并且不浪费内存 只有一个函数 实例不会额外创建函数
+
+        Person.prototype.sayHello = function () { }  //非常常见并且不浪费内存 只有一个函数 实例不会额外创建函数
         // 我们还可以用 Person.prototype.sayHello = function() {} 写在原型链上 这样实例都能访问。
 
 
@@ -152,16 +152,16 @@
         arr.findIndex(el => el == 2) // 查找元素的索引值
         arr.find(el => el == 2) // 查找元素
         arr.fill()  // 填充 
-        
+
 
         Array.form(arr)  // 将伪数组转化成真数组 所有只能Array调的方法都是静态方法
 
         3
         // String构造函数  大部分实例方法
-        str.split(',')   // 将字符串转化成数组 与splice功能相反
-        str.substring(0,3)  // 截取字符串 从0截取到2
-        str.startsWith('ni',0)  // 判断是否以某字符串开头 从0位置开始判断是否以ni开头
-        str.includes('hao',0) // 判断从0位置开始该字符串是否包含hao这个字符串
+        str.split(',')   // 将字符串转化成数组 与join功能相反
+        str.substring(0, 3)  // 截取字符串 从0截取到2
+        str.startsWith('ni', 0)  // 判断是否以某字符串开头 从0位置开始判断是否以ni开头
+        str.includes('hao', 0) // 判断从0位置开始该字符串是否包含hao这个字符串
         str.indexOf()  // 判断是否包含某字符
 
 
@@ -169,23 +169,23 @@
         4
         Object.prototype  // 原型  Object.prototype.toLocaleString()  这样直接调用是错的，他的this不会指向任何对象，必须实例化后再用
         // constructor  这个单词就是构造函数的意思
-        Object.prototype.constructor  === Object  // true
+        Object.prototype.constructor === Object  // true
 
 
         // 覆盖式创建
         Array.prototype = {    // 如果用这种写法会直接覆盖原Array.prototype 出现的问题是原来原型链上有的方法属性都没有了 换言之没爹了
-            sing:function() {},   // Array.prototype.constructor 没有了
+            sing: function () { },   // Array.prototype.constructor 没有了
 
 
             constructor: Array   // 最关键的一步 让我们覆盖的原型重新指回原构造函数！！！
-        }  
+        }
         // __proto__与[[prototype]]一样（只读不能写）  都是实例对象里指向原型对象的属性 目的是让实例对象可以用到原型链的方法与属性
         arr.__proto__ === Array.prototype  // true
 
 
 
         // 继承  有8 9种方式
-        function Per(){
+        function Per() {
             this.head = 1
             this.eyes = 2
         }
@@ -209,8 +209,117 @@
         // 深拷贝有三种
         // 1 函数递归  递归就是自己调自己 闭包就是内函数加外变量
         // 递归想要退出直接return即可
+        function deepCody(newObj, oldObj) {
+            for (let k in oldObj) {
+                if (oldObj[k] instanceof Array) {   // 万物皆对象 所以要先判断数组
+                    newObj[k] = []
+                    deepCody(newObj[k], oldObj[k])
+                } else if (oldObj[k] instanceof Object) {
+                    newObj = {}
+                    deepCody(newObj[k], oldObj[k])
+                } else {
+                    newObj[k] = oldObj[k]
+                }
+            }
+        }
+
+        // 2 lodash实现深拷贝
+        const newObj = _.cloneDeep(oldObj)
+
+        // 3 JSON实现深拷贝
+        const str1 = JSON.stringify(oldObj)  //将对象转化成JSON字符串
+        const newObj1 = JSON.parse(str1)   // 在将字符串转化为对象
+
+        JSON.parse(JSON.stringify(oldObj))   // 就一句话搞定 简单至极
+
+
+
+        6
+        throw '用户没有传递参数'    // 抛出异常  执行这个语句会中断当前的环境执行
+        throw new Error('参数为空')  // 推荐这么写 加一个new Error()
+
+        function name(params) {
+            debugger     // 这个是对程序员用的 直接断点到这里
+
+            try {
+                // 把可能发生错误的代码写在这里
+            } catch (err) {
+                console.log(err.message)   // 拦截错误 提示浏览器提供的错误信息 不阻断程序
+                return  // 习惯加这个用来阻断程序
+            }
+            finally {
+                // 不管你程序对不对，这里的程序一定能执行 哪怕上面已经return
+            }
+        }
+
+
+        7
+        fun.call(obj, arg1, arg2)   // 既调用了函数，又改变了该函数的this指向为obj对象 而不是以前的window  后面的arg都是原fun的参数
+
+        // 更重要的两位 apply bind
+        fun.apply(obj, [arg1, arg2])  // 一样 不过后面的参数格式变成了数组
+        Math.max.apply(null, [1, 2, 3, 4])  // 常用写法  反正就是比call多一项技能
+
+        fun.bind(obj, arg1, arg2)  // 写法与call一样 最大的区别就是bind()不会调用函数！！！只改变this 返回改过this的新函数
+        setTimeout(function () {
+
+        }.bind(obj), timeout)   // 记住bind对箭头函数无效 而且像setTimeout
+
+
+        8
+        // 防抖 lodash 和 手写
+        // lodash  _.debounce(fun,时间)
+        box.addEventListener('mousemove', _.debounce(fun, 500))
+
+        // 手写
+        function debounce(fn, t) {
+            let timer
+            return function () {    // 这里要返回一个匿名函数 函数调用只执行一次返回函数就是为了让下面函数一直执行  主要就是为了储存一个共用的timer要不然每次都是新的
+                if (timer) clearTimeout(timer)
+                timer = setTimeout(function () {
+                    fn()
+                },t)
+            }
+        }
+
+
+        box.addEventListener('mousemove', debounce(fun, 500))
+
+
+        // 节流 lodash和手写
+        // lodash  _.throttle(fn,时间)
+        box.addEventListener('mousemove', _.throttle(fun, 3000))
+
+        // 手写
+        function throttle(fn, t) {
+            let timer = null
+            return function () {
+                if (!timer) {
+                    timer = setTimeout(function () {
+                        fn()
+                        timer = null   // 为什么不用clearTimeout 因为定时器在运行时不能清除定时器的 所以官方不支持这种写法 所以我们用null代替
+                    },t)
+                }
+            }
+        }
+
+        // 节流就是在一段时间内确保只调用一次 
+        // 防抖就是确保你已经执行完该次操作才执行一次
+
+
+        // video.ontimeupdate 事件是在视频开始播放时就一直执行平均每秒四次 就是事件方便执行
+        // video.onloadeddata 事件是页面一打开就触发的事件
+        // video.currentTime 拿到当前视频已经播放的时间 能直接看到用户看到哪了
+
+        video.ontimeupdate = _.throttle(() =>{
+            localStorage.setItem('currentTime',video.currentTime)
+        },1000)
+        video.onloadeddata = () => {
+            video.currentTime = localStorage.getItem('currentTime')  || 0   // 逻辑中断 第一次打开没有赋值为0
+        }
         
-        
+
+
 
     </script>
 </body>

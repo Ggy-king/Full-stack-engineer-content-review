@@ -67,3 +67,39 @@ getJSON(url)
     }, (error) => {
         console.log('失败', error);
     })
+
+
+
+
+
+// ——————————————————————————————————————
+const p3 = new Promise((resolved,rejected) => {
+    const xhr = new XMLHttpRequest
+    xhr.open('get',url)
+    xhr.onreadystatechange = handler
+    xhr.response = 'json'
+    xhr.setRequestHeader('Content-Type','application/json')
+
+    xhr.send()
+    function handler() {
+        if(this.readyState === 4) {
+            if(this.status === 200) {
+                resolved(this.response)
+            } else {
+                rejected(new Error(this.statusText))
+            }
+        }
+    }
+})
+// 1 resolve
+Promise.resolve('abc')  //  能将现有的任何对象转换成Promise对象
+
+// 2 reject
+Promise.reject('哈哈哈')
+
+// 3 race
+Promise.race([a,b])  // 里面接受数组  a是要请求的 b是超时的 
+
+// 4 done和finally
+new Promise().then().catch().finally()  // 就是不管then和catch走不走 finally一定会走！
+

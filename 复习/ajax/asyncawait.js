@@ -61,3 +61,8 @@ try {
 } catch (err) {
     console.log(err);
 } 
+
+
+async e => {
+    await console.log('箭头函数也是函数哦');
+}
