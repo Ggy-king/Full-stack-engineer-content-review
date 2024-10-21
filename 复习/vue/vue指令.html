@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 写vue的时候要有一种感觉 就是v-指令的作用域都是一块一块里，平级加向下 -->
+
+        <!-- 1 v-html等价于innerHTML 写在标签里属性值就是表达式 -->
+        <div v-html="msg"></div>
+
+        <!-- 2 v-show 是控制display:none 实现的元素隐藏 -->
+        <div v-show="flag"></div>
+
+        <!-- 3 v-if 是直接创建或者移出元素 -->
+        <div v-if="flag"></div>
+
+        <!-- 4 v-else v-else-if 要搭配v-if使用(是要紧挨着v-if)  v-else不用接属性值 -->
+        <div v-else></div>
+        <div v-else-if="flag === 4"></div>
+
+        <!-- 5 v-on:事件名=""  实现事件监听on    为方便开发 -->
+        <div v-on:click="count++"></div>
+        <!-- 简写事件 @click="" -->
+        <div @mouseenter="count--"></div>
+
+        <!-- 6 v-on:事件名="methods中的函数名"   ()带不带都一样-->
+        <div @focus="fn"></div>
+        <div @focus="fn(a,b)"></div>
+
+        <!-- 7 v-bind:属性名="" 动态设置html的标签属性 src url title -->
+        <img v-bind:src="imgUrl" v-bind:alt="msg">
+        <!-- 简写 v-bing === :   :src="imgUrl"  :alt=""-->
+        <img :src="imgUrl" :alt="msg">
+
+        <!-- 8 v-for="" 遍历 基于数据循环  1数组 2对象 3数字 -->
+        <!-- 8 :key=""  给当前列表项添加唯一标识 便于vue进行列表项正确复用 不正确的后果是默认行为会尝试原地修改元素 即就地复用 -->
+        <!-- 简单理解就是人走了 加还在 加上:key就会人走家拆 -->
+        <!--  数组循环 v-for="(item,index) in 数组" -->
+        <li v-for="(item,index) in list">
+            <span>{{id}} - {{item.name}}</span>
+            <span>{{item.like}}</span>
+            <button @click="del(item.id)">删除</button>
+        </li>
+
+        <!-- 9 v-model="" 给表单使用的 双向数据绑定！！！ 可以快速获取设置内容-->
+        <input type="text" v-model="username">  
+
+
+    </div>
+
+
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: '文字信息',
+                htm: '<p>innerHTML的等价雨v-html</p>',
+                flag: false,
+                count: 100,
+                imgUrl: 'https://www.img.com/1.png',
+                list: [
+                    { id: 1, name: '西瓜', like: "水" },
+                    { id: 2, name: '西瓜', like: "水" },
+                    { id: 3, name: '西瓜', like: "水" },
+                    { id: 4, name: '西瓜', like: "水" },
+                ],
+                username:''
+            },
+            methods: {
+                // methods中所有this都指向当前实例 vue特别设置的
+                fn() {
+                    this.flag = !this.flag
+                },
+                del(id) {
+                    this.list = this.list.filter(item => item.id !== id)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
