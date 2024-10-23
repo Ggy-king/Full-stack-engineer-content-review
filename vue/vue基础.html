@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- 写vue的时候要有一种感觉 就是v-指令的作用域都是一块一块里，平级加向下 -->
+
+        <!-- 1 v-html等价于innerHTML 写在标签里属性值就是表达式 -->
+        <div v-html="msg"></div>
+
+        <!-- 2 v-show 是控制display:none 实现的元素隐藏 -->
+        <div v-show="flag"></div>
+
+        <!-- 3 v-if 是直接创建或者移出元素 -->
+        <div v-if="flag"></div>
+
+        <!-- 4 v-else v-else-if 要搭配v-if使用(是要紧挨着v-if)  v-else不用接属性值 -->
+        <div v-else></div>
+        <div v-else-if="flag === 4"></div>
+
+        <!-- 5 v-on:事件名=""  实现事件监听on    为方便开发 -->
+        <div v-on:click="count++"></div>
+        <!-- 简写事件 @click="" -->
+        <div @mouseenter="count--"></div>
+
+        <!-- 6 v-on:事件名="methods中的函数名"   ()带不带都一样-->
+        <div @focus="fn"></div>
+        <div @focus="fn(a,b)"></div>
+
+        <!-- 7 v-bind:属性名="" 动态设置html的标签属性 src url title -->
+        <img v-bind:src="imgUrl" v-bind:alt="msg">
+        <!-- 简写 v-bing === :   :src="imgUrl"  :alt=""-->
+        <img :src="imgUrl" :alt="msg">
+
+        <!-- 8 v-for="" 遍历 基于数据循环  1数组 2对象 3数字 -->
+        <!--  :key=""  给当前列表项添加唯一标识 便于vue进行列表项正确复用 不正确的后果是默认行为会尝试原地修改元素 即就地复用 -->
+        <!-- 简单理解就是人走了 加还在 加上:key就会人走家拆 -->
+        <!--  数组循环 v-for="(item,index) in 数组" -->
+        <li v-for="(item,index) in list">
+            <span>{{id}} - {{item.name}}</span>
+            <span>{{item.like}}</span>
+            <button @click="del(item.id)">删除</button>
+        </li>
+
+        <!-- 9 v-model="" 给表单使用的 双向数据绑定！！！ 可以快速获取设置内容-->
+        <input type="text" v-model="username">
+
+
+
+
+        <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- 指令修饰符 就是指令的修饰后缀，通过.实现 后缀是封装了一些操作处理 -->
+        <!-- 1 @keyup.enter 键盘弹起+回车触发 -->
+        <input type="text" @keyup.enter="">
+
+        <!-- 2 v-model.trim v-model.number转成数字类型 -->
+        <input type="text" @v-model.trim="" @v-model.number="">
+
+        <!-- 3 @click.stop阻止冒泡 @click.prevent阻止默认事件 -->
+        <div @click.stop="" @click.prevent></div>
+
+
+
+        <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- 1 v-bind:class :class="{}"一个类名来回切换   :class="[]"批量控制-->
+        <div :class="{font16:true,colorRed: inde === activeIndex}"></div>
+        <div :class="[font16,colorRed]"></div>
+
+        <!-- 2 :style="{color: ''}" -->
+        <div :style="{color: 'red'}"></div>
+
+        <!-- 3 radio select textarea都是v-model动态绑定value -->
+        <input type="radio" name="gen" id="" value="1" v-model="radio">
+        <input type="radio" name="gen" id="" value="2" v-model="radio">
+        <select name="" id="" v-model="select">
+            <option value="101"></option>
+            <option value="102"></option>
+            <option value="103"></option>
+            <option value="104"></option>
+        </select>
+
+
+
+        <!-- -------------------------------------------------------------------------------------------------------------------------------------- -->
+        <!-- 基于现有的数据算出来的数据在渲染到页面 通常用computed -->
+        <!-- 特别注意 计算属性是属性 虽然写在computed里是方法但是渲染到页面是属性不用加() -->
+
+
+
+
+
+
+    </div>
+
+
+    <script src="./vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                msg: '文字信息',
+                htm: '<p>innerHTML的等价雨v-html</p>',
+                flag: false,
+                count: 100,
+                imgUrl: 'https://www.img.com/1.png',
+                list: [
+                    { id: 1, name: '西瓜', like: "水" },
+                    { id: 2, name: '西瓜', like: "水" },
+                    { id: 3, name: '西瓜', like: "水" },
+                    { id: 4, name: '西瓜', like: "水" },
+                ],
+                username: '',
+                select: '101',
+                obj: {
+                    word: '',
+                    lang: 'english'
+                }
+            },
+            methods: {
+                // methods中所有this都指向当前实例 vue特别设置的
+                fn() {
+                    this.flag = !this.flag
+                    this.sum2 = '你好'
+                },
+                del(id) {
+                    this.list = this.list.filter(item => item.id !== id)
+                },
+
+            },
+            computed: {   // computed中的方法写在methods是完全可以的，但是computed有缓存特性只有依赖项发生变化才会重新计算 节省时间
+                // 只会执行一次 除非数据变化 读缓存 性能高
+                sum(a, b) {
+                    // 简写 就是没有get set
+                    return a + b
+                },
+                // 不简写 get负责返回结果 set负责其他逻辑上修改结果
+                sum2: {
+                    get() {
+                        return this.count
+                    },
+                    set(value) {  // value就是其他逻辑给设置的参数 因为sum2是属性 所以只能赋值
+                        value.slice(0, 1)
+                    }
+                },
+                // 复选框实现 用get方法配every实现小复选控制大复选 用set方法配forEach实现大复选配小复选
+                isAll: {
+                    get() {
+                        return this.list.every(item => item.isChecked === true)  // 复选框是否全选 用every
+                    },
+                    set(value) {
+                        this.list.forEach(item => item.isChecked = true)   // 改变所有小复选框的状态
+                    }
+                },
+            },
+            watch: {   // 监听属性 只要属性变化无需页面刷新自动更新
+                // 简单写法
+                select(newValue, oldValue) {   // 注意 你要监听哪个属性就写那个属性(直接就是原名) 变成方法
+
+                },
+                'obj.word'(newValue, oldValue) {  // 还是和data里一模一样 加上引号即可
+
+                },
+                'obj.word'(newValue, oldValue) {
+
+                    clearTimeout(this.timer)  // 在watch里做防抖很简单 因为watch是实时监听的 所以只要在每次监听前清除一下定时器即可
+                    this.timer = setTimeout(async () => {    // this.timer直接往app对象上挂载属性
+                        const res = await axios({
+                            url,
+                            params: { words: newValue }
+                        })
+                        console.log(res);
+                    })
+                },
+
+                // 完整写法 是一个对象不是一个方法了
+                // 一次性将对象中所有属性都监视到
+                obj:{
+                    deep: true,   // 开启深度监视 就是监视obj下的所有属性
+                    immediate: true, // 一刷新页面不管数据变没变化都执行一次
+                    handler(newValue) {
+                        newValue.lang
+                    }
+                }
+                
+            }
+        })
+    </script>
+</body>
+
+</html>

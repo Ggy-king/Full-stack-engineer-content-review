@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>数据的响应式处理 -> 响应式: 数据变化，视图自动更新</p>
+
+    <!-- 1 准备容器 -->
+    <div id="app">
+        <!-- 插值表达式 + 变量名 -->
+        {{ msg }}
+    </div>
+
+    <!-- 开发版本就是包含完整的警告与提示 -->
+    <!-- 生产版本没有 体0积更小 -->
+    <script src="./vue.js"></script>
+
+    <script>
+        const app = new Vue({
+            el: '#app',   // el负责指定vue管理哪个盒子
+
+            data: {       // 通过data提供数据
+                msg: '1111你好'
+            }
+        })
+        app.msg = '变化了'
+    </script>
+</body>
