@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+ 
+
+    <form id="form">
+        <label for="inp">名字：</label>
+        <input type="text" name="name" id="inp"></br>
+
+        <label for="pwd">密码：</label>
+        <input type="password" name="password" id="pwd"></br>
+
+        <label>学籍：</label>
+        <input type="radio" name="student-status" id="rad1" value="primary-school">
+        <label for="rad1">小学</label>
+
+        <input type="radio" name="student-status" id="rad2" value="middle-school">
+        <label for="rad2">初中</label>
+
+        <input type="radio" name="student-status" id="rad3" value="high-school">
+        <label for="rad3">高中</label>
+
+        <input type="radio" name="student-status" id="rad4" value="college">
+        <label for="rad4">大学</label></br>
+
+        <label for="text">个性签名：</label>
+        <textarea name="personal-signature" id="text" cols="30" rows="10" placeholder="请你写下你超级人生名言"></textarea></br>
+
+        <button type="submit" id="btn">保存</button>    
+    </form>
+    <script>
+        const formDate=document.getElementById('form')
+        
+        formDate.addEventListener('submit',function(e){
+            e.preventDefault()
+            
+            let xhr=new XMLHttpRequest()
+            xhr.open('POST','http://localhost:3000/save',true)
+            xhr.setRequestHeader('Content-Type','application/json')
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4&&xhr.status==200){
+                    console.log(xhr.responseText)
+                }else if(xhr.readyState==4&& xhr.status!==200){
+                    console.error(readyState)
+                }
+            }
+
+
+            var data = {
+                name:document.getElementById('inp').value,
+                password:document.getElementById('pwd').value,
+                studentStatus:document.querySelector('input[name="student-status"]:checked').value,
+                personalSignature: document.getElementById('text').value
+            }
+            console.log(data);
+
+            xhr.send(JSON.stringify(data))
+        })
+    </script>
+
+
+</body>
+
+</html>
