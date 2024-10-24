@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 800px;
+            height: 200px;
+            background-color: aqua;
+            /* 父元素 */
+            display: flex;
+            /* 主轴方向  设置xy哪个是主轴  -reverse 即轴反转 */
+            flex-direction: row;
+            /* flex-direction: row-reverse;
+            flex-direction: column;
+            flex-direction: column-reverse; */
+
+            /* 主轴上子元素的排列方式 设主轴是x轴 正向 */
+            /* justify-content: flex-start; 从左到右无margin */
+            /* justify-content: flex-end;  从右到左 */
+            /* 挤在一起居中对齐  无margin*/
+            justify-content: center;
+            /* 平均分配剩余空间 即左右margin相等 */
+            justify-content: space-around;
+            /* 平均分配剩余空间 空白的空间相等 与around的唯一区别是两侧的子盒子margin为两倍 不理解就演示一遍吧 */
+            justify-content: space-evenly;
+            /* 不给最外边两侧margin 贴边 平均分配剩余空间 */
+            justify-content: space-between;
+
+
+            /* flex中子元素默认不换行 即它会压缩你设定好的子盒子的宽度也不会另起一行显示新盒子 所以我们需要换行显示的时候用wrap换行 */
+            flex-wrap: wrap;
+
+
+            /* 单行侧轴上子元素的排列 没有space-around between evenly*/
+            align-items: center;
+            align-items: stretch;
+
+            /* 多行侧轴上子元素的排列 设主轴是x轴 正向*/
+            /* 里面的属性与justify-content没有什么区别 */
+            /* align-content: space-around; 平分剩余空间 不贴边 侧轴上只有一个元素时 展示效果与center没区别 */
+            /* 当你不给子元素高度时，stretch将把子元素拉伸至父元素一样高 */
+            align-content: stretch;
+
+
+            /* 将flex-direction和flex-wrap合起来写 一般 */
+            flex-flow: column wrap;
+
+        }
+
+        span {
+            width: 200px;
+            height: 80px;
+            background-color: pink;
+            /* 子元素 */
+            /* flex属性 数字表示该子元素分配父元素剩余空间占多少份 */
+            flex: 1;
+
+
+            /* 设置自己在侧轴上的排列方式 */
+            /* 给该子元素更高优先级 单独赋予它特殊的样式 */
+            align-self: flex-end;
+
+
+            /* 每一个子元素从0开始有序号顺序排列  记住是从0开始排的*/
+            /* order可以直接设置改元素的位置 */
+            order: 6;
+            /* order: -1;  更靠前比0还前 */
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+</body>
+
+</html>

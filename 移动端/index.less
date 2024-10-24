@@ -1,0 +1,17 @@
+// 导入
+@import "new";
+
+@num:15;
+.com {
+    // 宽度缩放
+    width: 50rem / @num;
+    // 边距缩放
+    margin: 15rem / @num 20rem / @num 0 / @num 10rem / @num;
+    // 背景缩放 图片宽高一般是和盒子宽高一样
+    background-size: 50rem / @num 20rem / @num;
+    // 文字缩放
+    font-size: 16rem / @num;
+    // 圆角缩放 就正常算 如高度的一半
+    border-radius: 10rem / @num;
+    // 图片缩放 一般是百分比做法 父盒子是rem即可
+}

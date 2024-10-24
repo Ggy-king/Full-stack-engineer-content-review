@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 以ie最高版本运行 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Document</title>
+    <style>
+        @media screen and (max-width:767px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width:768px) {
+            .container {
+                width: 750px;
+            }
+        }
+
+        @media screen and (min-width:992px) {
+            .container {
+                width: 970px;
+            }
+        }
+
+        @media screen and (min-width:1200px) {
+            .container {
+                width: 1170px;
+            }
+        }
+
+        .container {
+            height: 20px;
+            margin: 0 auto;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        响应式布局是为了用一套代码来实现三端都兼容
+        常用的策略是媒体查询和Bootstrap
+        1 超小屏幕 (手机 小于768px) 宽度设为100%
+        2 小屏幕 (平板 大于等于768px) 宽度设为750px
+        3 中屏幕 (电脑 大于等于992px) 宽度设为970px
+        4 大屏幕 (显示屏 大于等于1200px) 宽度设为1170px
+
+
+
+        <!-- bootstrap 原理其实就是把屏幕平均分成12等份 在不同像素下控制显示的等份以及是否显示 其实就类似rem的原理 -->
+        <div class="row">
+            <div class="col-lg-3 clo-md-4 hidden-sm"></div>
+        </div>
+    </div>
+</body>
+
+</html>

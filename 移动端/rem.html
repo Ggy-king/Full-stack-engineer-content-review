@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 在我们屏幕上并且最大宽度为539  即下雨等于539 */
+        /* 动态设置html中font-size 将屏幕划分15或10或20等份  即屏幕像素除于等份的值就是html   目的就是保证每个屏幕下元素大小的缩放是等比例的 */
+        @media screen and (max-width:539px) {
+            html {
+                font-size: 50px;
+            }
+        }
+        @media screen and (min-width:540px) and (max-width:1079px) {
+
+        }
+        @media screen and (max-width:1080px) {
+            
+        }
+
+        div {
+            width: .2rem;
+        }
+        
+    </style> 
+    <!-- 写两套css文件适配的方法 -->
+    <link rel="stylesheet" href="style320.css" media="screen and (min-width:320px)">
+    <link rel="stylesheet" href="style640.css" media="screen and (min-width:640px)">
+
+</head>
+<body>
+    rem布局 是媒体查询+rem  
+    1 em是根据父元素设置的 父font-size=10px 则子width:10em 为100px
+    2 rem是根据html元素设置的 html的font-size=12px 则子width:5rem 为60px
+
+    媒体查询 @media
+</body>
+</html>
