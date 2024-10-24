@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* head里面添加内部样式style */
+    </style>
+
+    <!-- 也是在head头部引入link标签 -->
+    <link rel="stylesheet" type="text/css" href="./1基础.css">
+</head>
+
+<body>
+    <p style="color: aqua;font-variant: normal;">内联样式</p>
+
+    <div class="one-class next-class">类选择器,空格隔开则可以添加下个类名只能在一个class引号里面</div>
+    <!-- 同类选择器生效顺序是按css文件里的代码执行顺序执行，与html书写顺序无关 -->
+
+    <div id="text">id选择器</div>
+
+
+    <ul>
+        <li>后代选择器</li>
+        <li>后代选择器</li>
+        <div>
+            子代选择器
+        </div>
+    </ul>
+
+    <span>相邻前</span>
+    <h2>相邻兄弟只能向下选择</h2>
+    <h2>隔了一个兄弟</h2>
+</body>
+
+</html>

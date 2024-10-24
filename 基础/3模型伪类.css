@@ -1,0 +1,82 @@
+/* c3盒模型 */
+.box {
+    padding: 10px;
+    margin: 10px;
+}
+
+
+
+/* flex盒模型 */
+.container {
+    width: 500px;
+    height: 500px;
+    background-color: #555;
+
+    /* 开启弹性盒模型 默认方向row 水平左到右 column垂直上到下  在父盒子上的属性是可以规定子盒子的位置 */
+    display: flex;
+
+    /* 子元素摆放方向 */
+    flex-direction: row;
+    /* 子元素在父元素中垂直方向上的位置 */
+    justify-content: space-around;
+    /* 子元素在父元素中水平方向上的位置 */
+    align-items: center;
+}
+
+.box1 {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    /* 在子盒子的属性是确定子盒子与子盒子的之间位置 */
+    /* 分配子元素之间的剩余空间 数字为占比 */
+    flex: 3;
+}
+
+.box2 {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+
+    flex: 1;
+}
+
+.box3 {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+
+    flex: 1;
+}
+
+
+.float {
+    /* 在受影响的盒子加clear */
+    clear: both;
+    /* 在父元素中加 如下overflow和clear 并在受影响的盒子上加clear  日后使用率比较广*/
+    overflow: hidden;
+    clear: both;
+}
+/* 给父黑子加伪对象 并在受影响的盒子上加clear*/
+.float::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.ab {
+    /* 相对和绝对是以具有定位的父级为基础的 一直向上找直到顶层文档  */
+    position: relative;
+    left: 40px;
+
+    position: absolute;
+    left: 40px;
+    /* 绝对定位会脱离文档流 相对的不会 */
+
+    position: fixed;
+    bottom: 20px;
+
+    z-index: 2;
+    /* 设置堆叠顺序 */
+}
+
