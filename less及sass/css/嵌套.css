@@ -1,0 +1,28 @@
+.center {
+  height: 200px;
+}
+.center #top {
+  height: 50px;
+}
+.center #top li {
+  height: 25px;
+}
+.center #top ::after {
+  content: '';
+}
+.center #top:hover {
+  cursor: pointer;
+}
+.center #top :hover {
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  #main {
+    width: 100px;
+  }
+}
+@media tv {
+  #main {
+    width: 2000px;
+  }
+}

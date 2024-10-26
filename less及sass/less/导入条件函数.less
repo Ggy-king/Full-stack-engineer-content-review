@@ -1,0 +1,17 @@
+// 导入
+@import './变量.less';    // 要有@import 和 ;
+
+@import (reference) './嵌套.less';   // 加上reference可以让该文件引入但不编译
+
+@import (once) './混合.less';  //  同名文件只允许导入一次
+
+@import (multiple) './变量.less'; // 同名文件允许多次导入
+
+
+
+#mixin(@a:#fff) when(isNumber(@b)){   // isNumber 条件判断   isColor   isem ispixel
+    font-size: @b;
+}
+
+
+// 函数特别多 可以去官网看

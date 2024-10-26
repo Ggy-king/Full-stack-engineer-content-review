@@ -1,0 +1,80 @@
+.card() {
+    width: 200px;
+    height: 200px;
+    box-shadow: 2px 2px 2px 2px #ccc;
+}
+
+#main {
+    .card(); // 直接把.card中的代码复制过来 不会出现嵌套
+}
+
+// 默认参数方法  类似函数写法
+.border(@a: 10px, @b: 50px, @color: #231655) {
+    border: @a solid @color;
+    box-shadow: @arguments; // 把函数参数所有的都接过来 全部参数
+}
+
+#wrap {
+    .border();
+}
+
+// 匹配模式 @_匹配 
+
+.triangle(left, @width: 20px, @color) {
+    border-color: transparent transparent transparent @color;
+}
+
+.triangle(@_, @width: 20px, @color) {
+    border-style: solid;
+    border-width: @width;
+}
+
+#main {
+    .triangle(left, 50px, red); // @_就是匹配 你传入上面已经定义好的函数 他们会合并
+}
+
+
+// 方法的条件筛选
+#cardMon {
+
+    // when就是当 and就是并且
+    .border(@width, @color, @style) when(@width > 100px) and (@color =#999) {
+        border: @width, @color, @style ;
+    }
+
+    // when not就是当什么不是的时候 
+    .border(@width, @color, @style) when not(@width > 100px) {
+        border: @width, @color, @style ;
+    }
+
+    // , 就是相当于||
+    .font(@size: 30px) when (@size>50px),
+    (@size<100px) {}
+
+}
+
+// 数量不定的参数 ...
+.boxShadow(...) {
+    box-shadow: arguments;
+}
+
+// !important  最高优先级
+
+// 循环系统 通过递归  去官网上看把
+
+// 属性拼接  +号是拼接
+.box() {
+    box-shadow+: inset 0 0 10px;
+
+}
+#box {
+    .box();
+    box-shadow: 0 0 20px;   // 展示出来的会拼上函数里写的那些属性 在后面用,号拼接
+}
+
+
+// +_就是用空格进行拼接
+.box2() {
+    box-shadow+_: inset 0 0 10px;
+
+}

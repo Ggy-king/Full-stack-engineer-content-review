@@ -1,0 +1,33 @@
+.center {
+    height: 200px;
+    #top{
+        height: 50px;
+
+        li {
+            height: 25px;
+        }
+        ::after {
+           content: ''; 
+        }
+        &:hover {   // & 就是代表上级元素
+            cursor: pointer;
+        }
+        :hover {
+            cursor: pointer;
+        }
+    }
+}
+
+// 媒体查询
+#main {
+    @media screen {
+        @media (max-width:768px) {
+            width: 100px;
+        }
+    }
+    @media tv {
+        width: 2000px;
+    }
+}
+
+// 定义私有样式 感觉没啥用不写了

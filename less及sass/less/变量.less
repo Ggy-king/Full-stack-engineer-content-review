@@ -1,0 +1,61 @@
+// 这种注释最终不会显示在css文件上
+/* 这种css的注释会出现在css文件上 */
+
+// 变量 可以把常量额外封装到一个文件里
+@colorRed: red;
+@width: 400px;
+.box {
+    color: @colorRed;
+    width: @width;
+}
+
+// 选择器变量
+@mySelector: #warp; // 封装id选择器
+@div: div;
+
+@{mySelector} {
+    // 变成 #wrap{}  使用变量名的时候要用  @{}
+    color: #ccc;
+}
+
+.@{div} {
+    // .div{}
+    font-size: 16px;
+}
+
+// 属性变量
+@borderStyle: border-style;
+@solid: solid;
+
+@{mySelector} {
+    @{borderStyle}: @solid
+}
+
+
+// url变量
+@image: '../image';
+body {
+    background: url("@{image}/cat.png");
+}
+
+
+// 声明变量
+@background: {background-color: rgba(0, 255, 255, .3)}
+@{mySelector}{
+    @background()   // 需要加小括号调用 神奇吧 这种直接写完属性加属性值的变量使用需要加()
+}
+
+
+// 变量运算
+.@{div} {
+    width: @width - 20;
+}
+
+
+// 变量作用域
+// 谁仅听谁的
+@var:@a;
+@a: 50%;
+
+
+// 变量定义变量
