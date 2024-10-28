@@ -1,19 +1,51 @@
 <template>
   <div @click="changeFn">
     {{title}}
+
+    <!-- input表单一类的如果子组件想双向数据绑定props里的值是不能用v-model的因为子不能改父 要用:value/:checked -->
+    <!-- <select :value="title" @change="handleChange"> -->
+
+      <!-- 这种写法常用 :value='value' -->
+    <select :value="value" @change="handleChange">
+      <option value="12"></option>
+      <option value="13"></option>
+      <option value="14"></option>
+      <option value="15"></option>
+    </select>
+
+    <div v-show="visible"></div>
   </div>
 </template>
 
 <script>
 export default {
     // 接受到父亲组件的属性
-    props: ['title'],
+    props: {
+      title,
+      value:String,
+      visible: Boolean
+    },
     inject: ['list','fatherTitle'],  // inject接受最上层共享的数据
     methods: {
         changeFn(){
             this.$emit('changeFather','改变父组件')  // 这里是父子传值
             this.$emit('sendMsg','传值给bus')  // 这里是bus总线传值  任何监听了sendMsg的组件都能收到这个值
             
+        },
+        handleChange(e) {
+            this.$emit('changeSelect',e.target.value)   // 把监听到的e.target.value值传递给父组件中changeSelect事件
+
+            // 父组件中的写法
+            // :title = "fatherTitle"
+            // @changeSelect="fatherTitle = $event"
+
+
+            // 11111 上面的内容可以简写 核心就是用input事件传而不是自定义事件 子组件接受用:value="value"接
+            this.$emit('input',e.target.value)     //直接变成input事件就行了 父组件那边就可以用成v-model='数据'
+
+            this.$emit('update:visible',false)   // update: 是固定的 后面visible是看你传的什么属性了
+
+
         }
     }
 }

@@ -8,6 +8,13 @@
     <!--   而在子组件中用props:[]来接受 -->
     <!-- 2 子传父是用$emit方法 注意this.$emit('名称','值')中的名称在父组件中其实就是一个事件 你需要用函数或者数据接受 -->
     <AppHeader :title="fatherTitle" @changeFather="handleChange"></AppHeader>
+
+    <!-- 原版input监听 -->
+    <AppHeader :title="fatherTitle" @changeSelect="fatherTitle = $event"></AppHeader>
+    <!-- 简版input监听 -->
+    <AppHeader v-model="fatherTitle"></AppHeader>
+    <!-- .sync功能等同于v-model 有些场景不适合用value 所以用.sync 他在子组件中$emit要写update:visible -->
+    <AppHeader :visible.sync="isShow"></AppHeader>
   </div>
 </template>
 
@@ -31,6 +38,7 @@ export default {
   props: {
     uname: String,
     password: Number,
+    isShow: true,
     topTitle: {
       type: String, // 类型
       required: true, // 是否必填
