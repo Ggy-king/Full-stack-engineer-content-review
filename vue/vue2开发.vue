@@ -29,6 +29,7 @@ import Bus from "./utils/EventBus.js";
 
 export default {
   // 用export default导出
+  name: 'VueApp',   // 这是组件对外的名字 你自己写的文件名可以随意(只要你配置了name)
   components: {
     // 都要写在components里
     // 组件名:组件对象 最好是统一命名
