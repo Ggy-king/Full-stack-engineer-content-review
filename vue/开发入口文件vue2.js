@@ -2,22 +2,12 @@
 
 import Vue from 'vue'  // 核心包
 import App from './App.vue'   // 根组件
-import VueRouter from 'vue-router'   // 引入路由组件
-
-// 引入views里面的组件 也就是主页面
-import HomePage from './views/HomePage.vue'
-import MyInformation from './views/MyInformation.vue'
-import ShopCart from './views/ShopCart.vue'
-
 
 import Comment from './components/Comment.vue'  // 全局引入
 // css重置样式或其他公共样式都需要在这里导入
 
 
-
 Vue.config.productionTip = false  // 提示什么环境(在浏览器控制台中提醒) 生产/开发
-Vue.use(VueRouter)  // 安装注册路由 每一个vue插件都需要用use注册
-
 
 
 // 全局注册组件
@@ -40,15 +30,6 @@ Vue.directive('loading', {  // 准备一个loading类 控制显示隐藏
     }
 })
 
-
-
-const router = new VueRouter({  // 创建路由实例对象
-    routes: [
-      { path: '/home', component: HomePage },
-      { path: '/my', component: MyInformation },
-      { path: '/shop', component: ShopCart },
-    ]
-  })
 
 new Vue({
     // el:'#app',  // 第一这里直接指向public/index.html  第二el:'#app'与.$mount('#app')功能完全一样

@@ -1,6 +1,8 @@
 <template>
   <div @click="changeFn">
     {{ title }}
+    <!-- 拿到路由查询参数的键值 -->
+    {{ $route.query.pen }}
 
     <!-- input表单一类的如果子组件想双向数据绑定props里的值是不能用v-model的因为子不能改父 要用:value/:checked -->
     <!-- <select :value="title" @change="handleChange"> -->

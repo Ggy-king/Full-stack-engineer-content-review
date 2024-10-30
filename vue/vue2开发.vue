@@ -106,5 +106,4 @@ export default {
 <!-- 当你给组件添加scoped后 他会对组件中每一个元素添加上一个data自定义属性 类似data-v-0ec3ed85这样 每个组件不一样 -->
 <!-- 你觉得是写了div{}  实际上是div[data-v-0ec3ed85]{} -->
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>
