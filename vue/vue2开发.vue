@@ -94,6 +94,7 @@ export default {
 
   created() {
     // 事件总线bus 核心原理就是让所有组件都共有一个爹 1 A去监听Bus事件中B事件 2 B在Bus事件中发送事件 3 A在回接事件
+    // 一定要先创建A 要先监听
     Bus.$on("sendMsg", (msg) => {
       // 在created中设置Bus.$on监听bus事件 第一个参数是事件名称，第二个是监听到需要执行的函数
       console.log(msg);

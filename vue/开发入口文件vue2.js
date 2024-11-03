@@ -2,6 +2,7 @@
 
 import Vue from 'vue'  // 核心包
 import App from './App.vue'   // 根组件
+import router from './router/index.js'  // 引入路由对象
 
 import Comment from './components/Comment.vue'  // 全局引入
 // css重置样式或其他公共样式都需要在这里导入
