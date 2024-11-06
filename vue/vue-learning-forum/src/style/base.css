@@ -1,0 +1,34 @@
+ /* 多行文本 兼容性问题*/
+ .ellipsis {
+     overflow: hidden;
+     text-overflow: ellipsis;
+     /* 弹性伸缩盒模型 */
+     display: -webkit-box;
+     /* 限制在一个块元素的文本行数 */
+     -webkit-line-clamp: 2;
+     /* 设置或检索伸缩盒对象的子元素的排列方式 */
+     -webkit-box-orient: vertical;
+ }
+
+ /* 移动端专属 */
+ .background {
+     /* 背景缩放 cover等比例完全覆盖 */
+     background-size: cover;
+     /* contain最大比例填充 */
+     background-size: contain;
+ }
+
+ .tap_highlight_color {
+     /* 移动端像a标签会出现点击高亮的效果，我们不需要 */
+     -webkit-tap-highlight-color: transparent;
+ }
+
+ .appearance {
+     /* ios系统中像按钮都会有一个难看的外观轮廓 不喜欢应该去掉 */
+     -webkit-appearance: none;
+ }
+
+ .touch_callout {
+     /* 禁止长按某些元素弹出菜单 */
+     -webkit-touch-callout: none;
+ }

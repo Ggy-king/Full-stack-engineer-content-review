@@ -1,0 +1,113 @@
+<!DOCTYPE html>  
+<html lang="zh-CN">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>模拟页面</title>  
+    <style>  
+        body {  
+            font-family: Arial, sans-serif;  
+            margin: 0;  
+            padding: 0;  
+            background-color: #000;  
+            color: #fff;  
+        }  
+        .header {  
+            display: flex;  
+            flex-direction: column;  
+            align-items: center;  
+            padding: 16px;  
+            background-color: #111;  
+        }  
+        .header img {  
+            width: 64px;  
+            height: 64px;  
+            border-radius: 50%;  
+            margin-bottom: 8px;  
+        }  
+        .header .info {  
+            text-align: center;  
+        }  
+        .header .info .name {  
+            font-size: 18px;  
+            font-weight: bold;  
+        }  
+        .header .info .points {  
+            font-size: 14px;  
+            margin-top: 4px;  
+        }  
+        .header .info .level {  
+            font-size: 12px;  
+            color: #888;  
+            margin-top: 2px;  
+        }  
+        .main {  
+            display: flex;  
+            flex-direction: column;  
+            padding: 16px;  
+        }  
+        .menu {  
+            display: flex;  
+            flex-wrap: wrap;  
+            gap: 8px;  
+            margin-bottom: 16px;  
+        }  
+        .menu .item {  
+            padding: 8px 16px;  
+            background-color: #222;  
+            border-radius: 4px;  
+            text-align: center;  
+        }  
+        .footer {  
+            display: flex;  
+            justify-content: space-around;  
+            background-color: #111;  
+            padding: 16px;  
+            position: fixed;  
+            bottom: 0;  
+            width: 100%;  
+        }  
+        .footer .nav-item {  
+            flex: 1;  
+            text-align: center;  
+        }  
+        .footer .nav-item a {  
+            color: #fff;  
+            text-decoration: none;  
+            font-size: 16px;  
+        }  
+    </style>  
+</head>  
+<body>  
+    <div class="header">  
+        <!-- 占位符头像，实际应替换为真实图片 -->  
+        <img src="placeholder_avatar.jpg" alt="用户头像">  
+        <div class="info">  
+            <div class="name">观察者DT7008</div>  
+            <div class="points">积分：4480分</div>  
+            <div class="level">等级：100%</div>  
+        </div>  
+    </div>  
+    <div class="main">  
+        <div class="menu">  
+            <div class="item">历史</div>  
+            <div class="item">收藏</div>  
+            <div class="item">订阅</div>  
+            <div class="item">积分商城</div>  
+            <div class="item">最新活动</div>  
+            <div class="item">加入群组</div>  
+            <div class="item">帮助与反馈</div>  
+            <div class="item">关于我们</div>  
+            <div class="item">更多设置</div>  
+            <div class="item">深色模式</div>  
+        </div>  
+        <!-- 其他内容可以放在这里 -->  
+    </div>  
+    <div class="footer">  
+        <div class="nav-item"><a href="#">首页</a></div>  
+        <div class="nav-item"><a href="#">快讯</a></div>  
+        <div class="nav-item"><a href="#">话题</a></div>  
+        <div class="nav-item"><a href="#">我的</a></div>  
+    </div>  
+</body>  
+</html>
