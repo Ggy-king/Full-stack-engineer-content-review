@@ -3,6 +3,7 @@
 import Vue from 'vue'  // 核心包
 import App from './App.vue'   // 根组件
 import router from './router/index.js'  // 引入路由对象
+import store from '@/store/index.js'  // 引入Vuex中store对象
 
 import Comment from './components/Comment.vue'  // 全局引入
 // css重置样式或其他公共样式都需要在这里导入
@@ -40,5 +41,6 @@ new Vue({
 
 
     render: h => h(App),  // 这里是基于App.vue创建index.html中的结构  如果不写这句话就是相当与直接往index.html里写，写上这句话才会将App.vue文件渲染到index.html里
-    router   // 把实例化路由对象加载到vue实例上
+    router,   // 把实例化路由对象加载到vue实例上
+    store
 }).$mount('#app')

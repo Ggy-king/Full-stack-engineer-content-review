@@ -14,7 +14,9 @@ Vue.use(VueRouter)  // 安装注册路由 每一个vue插件都需要用use注�
 const router = new VueRouter({  // 创建路由实例对象
     routes: [
         {path: '/', redirect: '/home'},   // 一访问到路径/就强制跳转到/home
-        { path: '/home', component: HomePage },
+
+        // 配置子路由用children 在children中写跳转组件并在home组件中书写router-view 实现二级跳转
+        { path: '/home', component: HomePage ,children:[{path:'/one',component:One},{path:'/two',component:Two}]},
 
         // 给路径加上的: 是可以让一个页面匹配多个子级路由 my/1  my/abc都能匹配:word就是动态参数也是必传的参数 :word?就变成了可选参数了 他就可以匹配到/my
         { path: '/my/:word?', component: MyInformation }, 

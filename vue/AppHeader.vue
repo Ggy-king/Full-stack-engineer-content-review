@@ -21,7 +21,7 @@
     <slot>这里是默认值</slot>
     <!-- 有名字叫具名插槽 用于区分就可以展示多个slot -->
     <slot name="header" msg="传过去" :far="now"></slot>
-  <!-- {msg:"传过去",now:'值'} slot将上面这个对象传递给父组件 -->
+    <!-- {msg:"传过去",now:'值'} slot将上面这个对象传递给父组件 -->
     <slot name="main"></slot>
     <slot name="footer"></slot>
 
@@ -31,8 +31,16 @@
 
 <script>
 import Bus from './EventBus.js'
+import {mapState} from 'vuex'   // mapState在vuex中
 
 export default {
+  computed: {
+    // store中的数据名称太长可以用computed属性简化 常用mapState辅助函数简化操作将store数据自动映射在computed中
+    numCount() {
+      return this.$store.state.numCount
+    },
+    ...mapState(['numCount', 'objList'])   // 第一mapState要放在computed中 第二mapState参数是数组 第三要用...展开在computed中
+  },
   // 接受到父亲组件的属性
   props: {
     title,

@@ -24,8 +24,12 @@
       <router-link to="/my/pen">个人</router-link>
     </div>
     <button @click="goSearch">搜索跳转</button>
-    <!-- router-view是路由切换展示的占位符 -->
-    <router-view></router-view>
+
+    <!-- keep-alive是缓存组件 组件每一次切换都会被销毁。而keep-alive会将切出去的组件保留在内存中不销毁 -->
+    <keep-alive include="">
+      <!-- router-view是路由切换展示的占位符 -->
+      <router-view></router-view>
+    </keep-alive>
 
   </div>
 </template>
