@@ -20,7 +20,6 @@ async function getRes() {
     document.querySelector('.person').innerHTML = person.data.data.list[0]
     // 操作一
 
-
     const phone = await axios({ url: url2 })
     // 操作二
 
@@ -31,7 +30,6 @@ async function getRes() {
     // 操作四
 
 }
-
 
 
 // ------------------------------
@@ -46,7 +44,6 @@ try {
         const person = await axios({ url: url1 })
         document.querySelector('.person').innerHTML = person.data.data.list[0]
         // 操作一
-
 
         const phone = await axios({ url: url2 })
         // 操作二

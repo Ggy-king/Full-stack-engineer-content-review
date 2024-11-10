@@ -30,19 +30,61 @@
     // 1 axios默认get方法
     // 2 get -> params post -> data
     axios({
-        url,
+        url: '/info',
         method: 'post',
         data: {
             // 参数名:值
             username: 'gao'
-        }
+        },
+        baseURL: 'https://ggyking.top',   // 基础url可以跟url进行拼接
+        transformRequest: [function (data, headers) { return data }], // 对请求的结果做一些改变在发送过去
+        transformResponse: [function (data, headers) { return data }], // 对响应的结果做一些改变在接收
+        headers: { 'X-Request-With': 'XMLHttpRequest' },   // 对请求头信息做一些配置
     }).then(result => {    // 获取数据时执行
 
     }).catch(error => [    // 捕获错误时执行
         error.response.data.message
     ])
 
+
+    // 1 axios中方法单独使用推荐 
+    axios.request(config)
+    axios.get(url,)
+    axios.post(url, data,)
+    axios.put(url, data,)
+    axios.delete(url,)
+    axios.patch(url, data,)
+
+
+    // 2 axios成功时会返回的内容 一共六个部分
+    // (1) config: 包括请求头 url 请求体 延迟时间 请求方式等
+    // (2) data: 响应体的结果，就是服务器返回的结果
+    // (3) headers: 响应头的信息
+    // (4) request: 原生的ajax请求对象也就是xhr
+    // (5) status: 响应状态码
+    // (6) statusText: 响应状态字符串
+
+    // 3 对请求头headers的解释
+    axios({ headers: { 'X-Request-With': 'XMLHttpRequest' } })
+    /*
+    Authorization：用于传递身份验证令牌，如Bearer令牌。这个头部通常用于API的身份验证和授权。
+    X-Requested-With：通常用于指示请求是由XMLHttpRequest发起的，而不是由传统的表单提交发起的。这个头部在Ajax请求中比较常见。
+    X-Custom-Header：这是一个示例性的自定义头部，X-前缀表示这是一个非标准的、自定义的头部。Custom部分和后面的值（如foobar）可以根据具体需求进行定义。
+    Content-Type：虽然这是一个标准的HTTP头部，但也可以被视为一种自定义头信息，因为它的值（如application/json、multipart/form-data等）可以根据请求的内容类型进行自定义。
+    Accept：指定客户端可以接受的内容类型。虽然这也是一个标准的HTTP头部，但开发者可以根据需要自定义其值，以指示服务器返回特定类型的数据。
+    其他自定义头部：根据具体的应用程序或API需求，开发者可以定义任何数量的自定义头部，如X-API-Key、X-Version等，用于传递API密钥、请求版本号等额外信息。
     
+    为什么要使用自定义请求头？
+    (1) 安全性：某些敏感信息（如身份验证令牌）可能不适合通过查询参数传递，因为这样做可能会使这些信息暴露在浏览器的历史记录、服务器日志或代理缓存中。
+        相比之下，请求头可以通过HTTPS加密，从而提供更高的安全性。
+    (2) 元数据：请求头通常用于传递与请求本身相关的元数据，而不是请求的具体内容。例如，Content-Type头部告诉服务器请求体的媒体类型，
+        Accept头部指定客户端可以接受的响应类型。自定义头部也可以用于类似的目的，比如传递客户端的版本信息、API密钥或其他非敏感但重要的元数据。
+    (3) 缓存和代理行为：某些头部信息（如Cache-Control、If-Modified-Since等）可以影响缓存和代理服务器的行为。这些头部对于控制资源的缓存策略至关重要。
+    (4) 可读性和维护性：虽然查询参数对于简单的GET请求来说很方便，但当参数变得复杂或数量众多时，URL可能会变得难以阅读和维护。
+        在这种情况下，使用请求头可能是一个更好的选择，因为头部信息以键值对的形式组织，更容易理解和扩展。
+    (5) POST请求：对于POST请求，请求体通常用于传递数据内容，而查询参数则不太适用。
+        在这种情况下，头部信息成为了一种向服务器传递额外信息（如身份验证令牌、客户端类型等）的有效方式。
+    */
 </script>
 
 </html>

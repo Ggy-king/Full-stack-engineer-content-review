@@ -19,7 +19,7 @@ p.then(res => {
 
 
 // Promise的静态方法
-Promise.all([Promise对象,Promise对象, Promise对象等]).then(res => res)   //这个时候只有所有的Promise对象都是resolved的时候才会执行then  结果也是数组
+Promise.all([Promise对象, Promise对象, Promise对象等]).then(res => res)   //这个时候只有所有的Promise对象都是resolved的时候才会执行then  结果也是数组
 
 
 
