@@ -48,8 +48,20 @@
       <router-link to="/my/key">个人</router-link>
       <router-link to="/my/pen">个人</router-link>
     </div>
-    <!-- router-view是路由切换展示的占位符 -->
-    <router-view></router-view>
+
+    <!-- keep-alive是缓存组件 组件每一次切换都会被销毁。而keep-alive会将切出去的组件保留在内存中不销毁
+          1 他会缓存所有当前级别路由所匹配的规则组件 >= 
+          2 被缓存的组件会多两个生命周期(像被销毁的两个生命周期就用不到了)
+            - activated 激活时，组件被看到时触发
+            - deactivated 失活时 离开页面组件看不见时 
+          include: 组件名数组 只有匹配的组件才会被缓存
+          exclude: 组件名数组 任何匹配的都不会被缓存
+          max: 最多能缓存多少个组件
+    -->
+    <keep-alive :include="['home','shop']">
+      <!-- router-view是路由切换展示的占位符 -->
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -71,6 +83,12 @@ export default {
       ],
     };
   },
+  activated() {
+    // 激活时生命周期
+  },
+  deactivated () {
+    // 失活时生命周期
+  },
   provide() {
     // provide是向子孙后代共享所有数据的 直接return{}即可 用inject接
     return {
@@ -85,7 +103,7 @@ export default {
         this.$refs.yesUse.focus()  // 立即获取焦点
       })
 
-      
+
     },
   },
 

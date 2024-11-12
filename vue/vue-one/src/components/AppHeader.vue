@@ -24,6 +24,20 @@ export default {
   components: {
     UserComment: UserCommentVue,
   },
+  // 接受到父亲组件的属性
+  props: {
+    title: {
+      value: String,
+      visible: Boolean
+    },
+    item: {
+      type: Object,
+      default: () => {    // 一定要注意，如果接收的累死你个是对象，默认值需要用函数返回!!!
+        return {}
+      }
+    }
+
+  },
   inject: ["list"], // 接收顶级组件的provide数据
 
   // 在created中监听Bus
