@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active {
+            background-color: red;
+        }
+
+        ul {
+            width: 250px;
+            height: 40px;
+            list-style: none;
+        }
+
+        ul li {
+            float: left;
+            width: 60px;
+            height: 100%;
+            background-color: #ccc;
+            border: 1px solid pink;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="app">
+        <li @click="activeIndex = index" v-for="(item,index) in list" :key="item.id"
+            :class="{active: index == activeIndex}">{{item.text}}</li>
+    </ul>
+
+    <script src="./vuem.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                activeIndex: 0,
+                list: [
+                    { id: 1, text: '秒杀1' },
+                    { id: 2, text: '秒杀2' },
+                    { id: 3, text: '秒杀3' },
+                    { id: 4, text: '秒杀4' },
+                ]
+            }
+        })
+    </script>
+</body>
+
+</html>
