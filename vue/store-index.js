@@ -12,17 +12,19 @@ Vue.use(Vuex)
 // Vuex是单项数据流 组件不能直接改vuex中的数据
 // 创建仓库 注意是Vuex里面的仓库 Vuex本身能做的储存功能更多
 
-const store = new Vuex.Store({
+export default new Vuex.Store({   // 直接这样返回出去就行了
     // 1
     // state类似data 是用来存储数据的
-    state: {
-        numCount: 100,
-        objList: [
-            { uname: 'zaa', age: 15 },
-            { uname: 'ffa', age: 25 },
-            { uname: 'dms', age: 48 },
-        ],
-        list: [1,2,3,4,5,6,7,8,9]
+    state() {
+        return {
+            numCount: 100,
+            objList: [
+                { uname: 'zaa', age: 15 },
+                { uname: 'ffa', age: 25 },
+                { uname: 'dms', age: 48 },
+            ],
+            list: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        }
     },
     // 2
     // 真几把麻烦 mutations
@@ -51,6 +53,9 @@ const store = new Vuex.Store({
     getters: {
         filterList(state) {
             return state.list.filter(item => item > 5)
+        },
+        token(state) {
+            return state.user.userInfo.username   // 在getters中返回全局变量token 这样的话是计算属性实时更新
         }
     },
     // 5
@@ -61,4 +66,4 @@ const store = new Vuex.Store({
     }
 })
 
-export default store
+
