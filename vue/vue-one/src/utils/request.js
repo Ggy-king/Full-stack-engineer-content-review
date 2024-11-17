@@ -39,6 +39,10 @@ instance.interceptors.request.use(function (config) {
   // 添加loading 还要禁止背景点击  关闭loading要在下面响应中关闭
 
 
+  // 每次请求如果有token则自动带上
+  if(store.getter.token) {
+    config.headers.Authorization = store.getter.token  //Authorization是鉴权的头部 也可以自定义换成别的
+  }
 
   return config;
 }, function (error) {

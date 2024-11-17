@@ -23,6 +23,9 @@ export default {
             this.$router.push({
                 path: '路由名字'   // 当你给路由配置了name的时候 可以用name跳转 适合path比较长的场景
             })
+            this.$router.replace({  // push会一直累加地址 但replace是替换不会新增地址
+                path: '路由名字'   
+            })
 
             // 传参
             this.$router.push('/路径/参数')
