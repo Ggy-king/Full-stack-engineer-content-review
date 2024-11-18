@@ -8,7 +8,8 @@
     <!-- 双击显示 失去焦点隐藏 -->
 
     <!-- 当页面需要同一个组件多次，并且还需要每个组件单独有些地方不同 可以使用 -->
-    <AppHeader>
+    <!-- @input="() => changeCount(item)" 一个比较高级的写法 既可以保留input实现函数调用的参数 又可以接受外部参数item -->
+    <AppHeader @input="() => changeCount(item)">
       <!-- 没有名字默认插槽 传值的时候用#default="obj" -->
       <template #default="obj">
         这里的内容展示在slot中
