@@ -2,10 +2,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'   // 引入路由组件
 
+
+import store from '@/store'
+
+
 // 引入views里面的组件 也就是主页面
-import HomePage from './views/HomePage.vue'
-import MyInformation from './views/MyInformation.vue'
-import ShopCart from './views/ShopCart.vue'
+import HomePage from '../views/HomePage.vue'
+import MyInformation from '@/views/MyInformation.vue'  // vue默认配置了@绝对路径 @代表src(可以改)这样可以避免移动文件路径还要重新调
+
+// 把shop和notFount两个组件变成按需加载，上面两个用户可能常访问到就默认加载
+// import ShopCart from '@/views/ShopCart.vue'
+// import NotFound from '@/views/NotFound.vue'
+const NotFound = () => import('@/view/NotFound.vue')
+const ShopCart = () => import('@/views/ShopCart.vue')
+
+
 
 Vue.use(VueRouter)  // 安装注册路由 每一个vue插件都需要用use注册
 
@@ -29,6 +40,22 @@ const router = new VueRouter({  // 创建路由实例对象
     mode: "history", // 采用历史路径模式(路径里没有#)，上线需要后端支持 默认是hash(有#号)
     linkActiveClass: '类名1',    // 在这里自定义模糊匹配的router-link类名
     linkExactActiveClass: '类名2', // 自定义精准匹配router-link类名
+})
+
+// 需要权限才能看的页面
+const authUrls = ['/my', '/shop']
+
+// 路由前置导航守卫 也就是在路由跳转前判断哪些页面可以跳转
+// to 到哪去 from 从哪来 next()直接放行 next(路径)进行拦截
+router.beforeEach((to, from, next) => {
+    // 看to.path 是否在authUrls中出现
+    if (!authUrls.includes(to.path)) {
+        next() //这样写默认放行，不写不放行
+        return
+    }
+    const token = store.getters.token
+    token ? next() : next('/login')  // 如果token不在则拦截到login
+
 })
 
 
