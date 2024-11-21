@@ -19,8 +19,10 @@ import UserCommentVue from "./UserComment.vue";
 
 // 引入事件总线Bus 其实就是新建了一个Vue实例化
 import Bus from "../utils/EventBus.js";
+import loginConfirm from '@/mixins/loginConfirm'
 
 export default {
+  mixins: [loginConfirm],  // 熟悉吧 vue2中也有 可以封装一个类似组件共用的data method等 混入进新的组件省的一些重复性的东西重复写
   components: {
     UserComment: UserCommentVue,
   },
@@ -36,7 +38,6 @@ export default {
         return {}
       }
     }
-
   },
   inject: ["list"], // 接收顶级组件的provide数据
 

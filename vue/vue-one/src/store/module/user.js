@@ -28,6 +28,7 @@ export default {
             setTimeout(() => {
                 // 调用mutations
                 context.commit('setUser', newUserInfo)
+                context.commit('setting/setColor',[],{root: true})   // {root: true}是开启全局开启查找module 找其他模块下的东西
             }, 1000);
         }
     },

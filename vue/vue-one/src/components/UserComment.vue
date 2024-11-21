@@ -64,7 +64,7 @@ export default {
     ...mapMutations(['addCount']),  // 一模一样数组 扩展 直接将store中mutations中方法添加到methods中 页面中直接可以调用
     ...mapMutations('user',['setUser']),  // 方法子模块扩展 四个都一样
     ...mapActions(['changeCount']), // 一模一样数组 扩展 直接将store中actions中方法添加到methods中 页面中直接可以调用
-    ...mapActions('user',['setUserSecond'])   // 异步方法子模块扩展 四个都一样
+    ...mapActions('user',['setUserSecond'])  // 异步方法子模块扩展 四个都一样
   }
 };
 </script>

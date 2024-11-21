@@ -2,13 +2,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'   // 引入路由组件
 
+
+import store from '@/store'
+
+
 // 引入views里面的组件 也就是主页面
 import HomePage from '../views/HomePage.vue'
 import MyInformation from '@/views/MyInformation.vue'  // vue默认配置了@绝对路径 @代表src(可以改)这样可以避免移动文件路径还要重新调
-import ShopCart from '@/views/ShopCart.vue'
-import NotFound from '@/views/NotFound.vue'
 
-import store from '@/store'
+// 把shop和notFount两个组件变成按需加载，上面两个用户可能常访问到就默认加载
+// import ShopCart from '@/views/ShopCart.vue'
+// import NotFound from '@/views/NotFound.vue'
+const NotFound = () => import('@/view/NotFound.vue')
+const ShopCart = () => import('@/views/ShopCart.vue')
+
+
 
 
 Vue.use(VueRouter)  // 安装注册路由 每一个vue插件都需要用use注册
