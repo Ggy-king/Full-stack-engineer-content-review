@@ -27,8 +27,8 @@ export default {
 <!-- 加上setup是允许在script中直接写组合式api -->
 <!-- <script setup> -->
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'  // 组件导入直接就能用 无需用components注册
-import { reactive, ref } from 'vue';
+import SonCom from './components/SonCom.vue'  // 组件导入直接就能用 无需用components注册
+import { computed, reactive, ref, watch, onMounted, onUnmounted } from 'vue';
 // 1 reactive是实现响应式数据的函数 它只能包对象类型的数据
 const state = reactive({
   count: 0
@@ -36,15 +36,73 @@ const state = reactive({
 // 2 ref也是实现响应式，既能包对象也能包简单数据，以后推荐用ref
 //       它的原理实际上是给数据包了一层reactive 所以在js中拿到值需要用count.value 在template中vue又扒了一层直接写count就行
 const count = ref(0)
+const list = ref([1, 2, 3, 4, 5, 6, 7, 8, 9])
+const obj = ref({
+  name: '李四',
+  age: 25
+})
 
 const handleCLickMsg = () => {
-  console.log(count.value,state.count);
+  console.log(count.value, state.count);
 }
 
+// 3 computed
+const computedList = computed(() => {
+  return list.value.filter(item => item > 2)
+})
+const computedListWhole = computed({
+  get: () => { },
+  set: (val) => { list.value = list.value + val }
+})
+console.log(computedListWhole);
+
+// 4 watch
+// watch(ref对象,(newValue,oldValue) => {},{其他配置})
+// watch([ref对象,ref对象],(newValue,oldValue) => {},{其他配置})返回的也是数组
+watch([count, list], (newValue, oldValue) => {
+  console.log(newValue, oldValue);
+}, {
+  immediate: true,  // 一进入页面立刻执行
+  deep: true,  // 监视复杂类型 深度监视
+})
+
+watch(
+  () => obj.value.age,   // 如果想对复杂类型中某一个属性监听，可以改成函数式写法  也不需要写deep
+  (newValue, oldValue) => { console.log(newValue, oldValue) }
+)
+
+
+// 5 生命周期 vue3的生命周期是兼容vue2的写法 只有beforeDestroy与destroyed被换成了beforeUnmount与unmounted 8个
+// 在vue3的组合式生命周期是 setup onBeforeMount onMounted onBeforeUpdate onUpdated onBeforeUnmount unmounted 7个
+
+// 1 <script setup> </script> 中的代码就是执行在setup生命周期中 注意setup周期取代了原beforeCreate与created
+
+onMounted(() => {console.log('挂载时的逻辑')})
+
+onUnmounted(() => {console.log('做定时器销毁的逻辑')})
+
+
+// 6 父传子
+/**
+* 1 在子组件身上添加属性的方式接收
+* 2 在子组件中通过props接收 需要用defineProps()编译器宏来接受 你就理解成函数吧
+*/
+
+// 7 子传父
+/**
+* 1 在父组件中给子组件身上添加自定义事件 用子组件身上绑定的事件来触发父组件内部的方法
+* 2 在子组件内部通过emit方法来触发事件
+*/
+const getMessage = (meg) => {
+// 子组件传值 调用该方法
+console.log(meg)
+}
 </script>
 
 <template>
   <header>
+    <SonCom car="传值宝马汽车" :count="count" @get-message="getMessage"></SonCom>
+    <div>{{ computedList }}</div>
     <button @click="handleCLickMsg">点击</button>
   </header>
 </template>
