@@ -1,0 +1,81 @@
+# husky是一个基于nodejs的git钩管理工具 
+一、Husky的简介
+    功能:Husky允许开发人员在Git的特定事件（如提交、推送等）发生时执行自定义脚本，从而自动化执行一系列任务，如代码格式化、类型检查、单元测试等。这有助于确保每次提交或推送前的代码都符合项目标准，减少错误，提高代码质量和协作效率。
+    跨平台支持:Husky能够在Windows、macOS和Linux等多种操作系统上工作，非常适合跨平台项目。
+    易用性:Husky提供了简单的配置文件和命令行工具，使得配置和管理Git钩子变得简单直接。
+
+
+
+二、Husky的安装
+    作为项目依赖安装（推荐）：
+    使用npm:npm install husky --save-dev
+    使用yarn:yarn add husky --dev
+
+
+三、Husky的配置
+    初始化Husky:在项目根目录中执行以下命令来初始化Husky，这会在项目根目录下创建一个.husky文件夹，用于存放生成的Git钩子脚本。
+    使用npm:npx husky install
+    使用yarn:yarn husky install
+    添加钩子:通过Husky提供的add命令来添加钩子脚本。例如，要添加一个预提交（pre-commit）钩子，可以在.husky/pre-commit文件中添加自定义的脚本命令。
+    添加一个运行ESLint和Prettier检查的预提交钩子:npx husky add .husky/pre-commit "npx eslint . && npx prettier --check ."
+    确保钩子脚本具有执行权限:chmod +x .husky/pre-commit（在某些情况下可能需要）
+    配置package.json:在package.json文件中，可以定义与Husky钩子相关联的脚本命令。例如：
+
+    # json
+    {
+      "scripts": {
+        "lint": "eslint .",
+        "format": "prettier --check .",
+        "test": "mocha",
+        "pre-commit": "npm run lint && npm run format && npm run test"
+      },
+      "husky": {
+        "hooks": {
+          "pre-commit": "npm run pre-commit"
+        }
+      }
+    }
+    # 在这个配置中，pre-commit钩子会在每次提交前运行npm run pre-commit命令，该命令会依次执行lint、format和test脚本。
+    
+
+
+
+四、Husky的常用钩子
+    Husky支持多种Git钩子，每个钩子在不同的Git事件发生时运行。以下是一些常用的钩子及其用途：
+    
+    pre-commit:在提交前运行。通常用于执行代码风格检查、类型检查等。
+    pre-push:在推送代码前运行。通常用于执行单元测试或代码审查。
+    pre-rebase:在拉取代码之前（进行rebase操作前）运行。主要用于确保拉取代码不会导致冲突或问题。
+    pre-receive:在接收远程推送时运行。通常用于执行预接收验证。
+
+
+五、注意事项
+    确保依赖已安装:在配置Husky钩子之前，需要确保所有相关的依赖（如ESLint、Prettier等）已经安装。
+    检查钩子脚本权限：在某些情况下，需要确保.husky目录下的钩子脚本具有执行权限。
+    避免使用--no-verify选项:在提交或推送代码时，避免使用--no-verify选项，否则Git会跳过钩子脚本的执行。
+    重新配置Husky:如果在配置过程中遇到问题（如钩子脚本被覆盖或未正确设置），可以尝试重新配置Husky。
+
+
+
+
+1 [pre-commit     在代码真正提交之前执行] 
+
+
+# 在项目中使用需要先用git初始化一下
+git init
+
+# 安装husky
+npm install husky --save-dev 或 npx husky install
+
+# 然后执行husky
+pnpm dlx husky-init && pnpm install
+
+
+
+# git操作
+
+git add .
+git commit -m '提交'
+
+
+
