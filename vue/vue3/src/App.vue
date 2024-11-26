@@ -29,6 +29,9 @@ export default {
 <script setup>
 import SonCom from './components/SonCom.vue'  // 组件导入直接就能用 无需用components注册
 import { computed, reactive, ref, watch, onMounted, onUnmounted } from 'vue';
+import {useUserStore} from './store/user.js'
+import {storeToRefs} from 'pinia'
+
 // 1 reactive是实现响应式数据的函数 它只能包对象类型的数据
 const state = reactive({
   count: 0
@@ -97,11 +100,50 @@ const getMessage = (meg) => {
 // 子组件传值 调用该方法
 console.log(meg)
 }
+
+
+
+// 8 通过ref拿到dom对象 或组件。 通过ref对象.value拿到元素
+const headerRef = ref(null)
+// 在需要的元素身上用ref="headerRef" 需要等待html渲染完才能拿到
+onMounted(() => {
+console.log(headerRef.value)
+})
+
+
+// 9 provide - inject 跨层级组件通信
+/**
+* 顶层组件 provide('相同的名字',传递的数据)
+* 底层组件 inject('相同的名字') 接受了 很简单比vue2简单
+*/
+provide('count',count)
+provide('changeCount',(newValue) => count.value = newValue ) // 还可以直接传递函数
+
+
+// 10 defineOptions
+/**
+ * 这个函数很好用，script变成setup组合式编程后很多与setup()平级的属性方法没办法写 像props emit expose slots
+ * 所以出现defineProps编译宏  但是像name 等属性就没有出 所以用defineOptions({})解决这些问题 
+ * 你可以把defineOptions理解成export default{} 写法
+ */
+ defineOptions({
+    name: 'App',
+    components:{},
+    inheritAttrs: false,
+    // 更多自定义属性...
+})
+
+
+// 11 pinia
+const user = useUserStore()   // userStore是一个函数 通过调用创建实例 注意创建后不能解构否则会丢掉响应式
+const {username} = storeToRefs(user)   //如果就想解构需要使用storeToRefs函数 从pinia中引入   但是方法可以直接解构
+console.log(user.username,user.changeUserS);
+
 </script>
 
 <template>
-  <header>
-    <SonCom car="传值宝马汽车" :count="count" @get-message="getMessage"></SonCom>
+  <header ref="headerRef">
+    <SonCom car="传值宝马汽车" :count="count" @get-message="getMessage" v-model="count"></SonCom>
     <div>{{ computedList }}</div>
     <button @click="handleCLickMsg">点击</button>
   </header>
