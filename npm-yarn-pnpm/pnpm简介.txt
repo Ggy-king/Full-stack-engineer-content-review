@@ -1,0 +1,30 @@
+# pnpm与npm的区别
+    1 安装和管理依赖：
+            npm:Node.js官方的包管理工具，用于安装和管理项目的依赖包。每次安装依赖时，npm会在node_modules文件夹中创建一个完整的依赖树，
+            可能导致依赖重复，占用更多磁盘空间。
+            pnpm:通过使用全局的缓存和符号链接来高效管理依赖。它会将依赖包存储在全局的缓存目录中，
+            并通过符号链接将这些依赖链接到每个项目的node_modules文件夹中。这样可以避免重复下载和存储相同的依赖，节省磁盘空间。
+    2 性能：
+            npm:在处理大量依赖时，npm的安装速度可能较慢，特别是在大项目中。
+            pnpm:由于采用了缓存和符号链接的机制，pnpm的安装速度通常比npm更快，尤其是在处理大量依赖时。
+    3 隔离性：
+            npm:依赖的隔离性相对较弱，不同项目的依赖可能会互相干扰。
+            pnpm:提供了更好的依赖隔离性，确保不同项目的依赖不会互相干扰。
+    4 空间占用：
+            npm:由于每个项目都会完整地存储其依赖项，因此可能会占用较多的磁盘空间。
+            pnpm:使用符号链接和全局缓存，避免了在多个项目中重复存储相同的依赖项，从而显著减少了磁盘空间的使用。
+    5 命令行接口：
+            npm和pnpm都提供了一组相似的命令来管理包，但它们的命令行接口略有不同。
+
+
+# 使用npm安装pnpm 
+// npm insatll -g pnpm
+
+
+# 用法 npm - yarn -pnpm
+1 [ npm install              yarn                     pnpm install      ]
+2 [ npm install axios        yarn add axios           pnpm add axios    ]
+3 [ npm install -D           yarn add axios -D        pnpm add axios -D ]
+4 [ npm uninstall axios      yarn remove axios        pnpm remove axios ]
+5 [ npm run dev              yarn dev                 pnpm dev          ]
+
