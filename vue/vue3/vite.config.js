@@ -6,6 +6,7 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
+  base: '/',  // base根地址
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))  // 路径的别名

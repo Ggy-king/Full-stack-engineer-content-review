@@ -29,8 +29,10 @@ export default {
 <script setup>
 import SonCom from './components/SonCom.vue'  // 组件导入直接就能用 无需用components注册
 import { computed, reactive, ref, watch, onMounted, onUnmounted } from 'vue';
-import {useUserStore} from './store/user.js'
-import {storeToRefs} from 'pinia'
+import { useUserStore } from '@/store'
+import { storeToRefs } from 'pinia'
+import { useRouter, useRoute } from 'vue-router'
+
 
 // 1 reactive是实现响应式数据的函数 它只能包对象类型的数据
 const state = reactive({
@@ -122,22 +124,29 @@ provide('changeCount',(newValue) => count.value = newValue ) // 还可以直接�
 
 // 10 defineOptions
 /**
- * 这个函数很好用，script变成setup组合式编程后很多与setup()平级的属性方法没办法写 像props emit expose slots
- * 所以出现defineProps编译宏  但是像name 等属性就没有出 所以用defineOptions({})解决这些问题 
- * 你可以把defineOptions理解成export default{} 写法
- */
- defineOptions({
-    name: 'App',
-    components:{},
-    inheritAttrs: false,
-    // 更多自定义属性...
+* 这个函数很好用，script变成setup组合式编程后很多与setup()平级的属性方法没办法写 像props emit expose slots
+* 所以出现defineProps编译宏 但是像name 等属性就没有出 所以用defineOptions({})解决这些问题
+* 你可以把defineOptions理解成export default{} 写法
+*/
+defineOptions({
+name: 'App',
+components:{},
+inheritAttrs: false,
+// 更多自定义属性...
 })
 
 
 // 11 pinia
-const user = useUserStore()   // userStore是一个函数 通过调用创建实例 注意创建后不能解构否则会丢掉响应式
-const {username} = storeToRefs(user)   //如果就想解构需要使用storeToRefs函数 从pinia中引入   但是方法可以直接解构
+const user = useUserStore() // userStore是一个函数 通过调用创建实例 注意创建后不能解构否则会丢掉响应式
+const {username} = storeToRefs(user) //如果就想解构需要使用storeToRefs函数 从pinia中引入 但是方法可以直接解构
 console.log(user.username,user.changeUserS);
+
+// 12 路由 useRouter useRoute 在vue-router中引入
+const router = useRouter() // 就是vue2中的路由对象
+const route = useRoute() // 路由小实例
+router.push('/list')
+
+
 
 </script>
 
@@ -150,3 +159,4 @@ console.log(user.username,user.changeUserS);
 </template>
 
 <style scoped></style>
+./store/modules/user.js
