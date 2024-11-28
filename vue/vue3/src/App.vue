@@ -159,4 +159,4 @@ router.push('/list')
 </template>
 
 <style scoped></style>
-./store/modules/user.js
+<!-- ./store/modules/user.js -->
