@@ -41,7 +41,6 @@ const router = new VueRouter({  // 创建路由实例对象
     linkActiveClass: '类名1',    // 在这里自定义模糊匹配的router-link类名
     linkExactActiveClass: '类名2', // 自定义精准匹配router-link类名
 })
-
 // 需要权限才能看的页面
 const authUrls = ['/my', '/shop']
 
