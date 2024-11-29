@@ -1,21 +1,4 @@
-<!-- 终于开启新的篇章了，以前对vue2 3 有很多不理解的地方，这次好好分析 -->
-<!-- vue3的优点
-    1 组合式api 你可以理解的vue2中方法监听计算属性啊，一个功能要分开写不易维护，但vue3都是写一块的，有点像原生js
-    2 ts更易支持 你得好好学ts了
-    3 重写diff算法 模版编译优化 组件初始化更高效
-    4 良好的treeShaking也就是体积小 按需引入
-    5 更好的数据响应式 es7的Proxy （可看es6进阶中介绍Proxy）
-    
- -->
-
-<!-- vue3项目的创建:
-        1 vue2创建其实是基于脚手架vue-cli底层是webpack 但是vue3是基于脚手架create-vue底层是vite
-        2 创建vue2项目使用 vue create name创建。 创建vue3项目使用npm init vue@latest命令
--->
-
-
-
-<!-- 第一 vue3中排版顺序是script -> template -> style -->
+<!-- 第一vue3中排版顺序是script -> template -> style -->
 
 <!-- <script>
 export default {
@@ -46,6 +29,11 @@ export default {
 <script setup>
 import SonCom from './components/SonCom.vue'  // 组件导入直接就能用 无需用components注册
 import { computed, reactive, ref, watch, onMounted, onUnmounted } from 'vue';
+import { useUserStore } from '@/store'
+import { storeToRefs } from 'pinia'
+import { useRouter, useRoute } from 'vue-router'
+
+
 // 1 reactive是实现响应式数据的函数 它只能包对象类型的数据
 const state = reactive({
         count: 0
@@ -125,18 +113,56 @@ console.log(headerRef.value)
 })
 
 
+// 9 provide - inject 跨层级组件通信
+/**
+* 顶层组件 provide('相同的名字',传递的数据)
+* 底层组件 inject('相同的名字') 接受了 很简单比vue2简单
+*/
+provide('count',count)
+provide('changeCount',(newValue) => count.value = newValue ) // 还可以直接传递函数
 
 
+// 10 defineOptions
+/**
+* 这个函数很好用，script变成setup组合式编程后很多与setup()平级的属性方法没办法写 像props emit expose slots
+* 所以出现defineProps编译宏 但是像name 等属性就没有出 所以用defineOptions({})解决这些问题
+* 你可以把defineOptions理解成export default{} 写法
+*/
+defineOptions({
+name: 'App',
+components:{},
+inheritAttrs: false,
+// 更多自定义属性...
+})
 
+
+// 11 pinia
+const user = useUserStore() // userStore是一个函数 通过调用创建实例 注意创建后不能解构否则会丢掉响应式
+const {username} = storeToRefs(user) //如果就想解构需要使用storeToRefs函数 从pinia中引入 但是方法可以直接解构
+console.log(user.username,user.changeUserS);
+
+// 12 路由 useRouter useRoute 在vue-router中引入
+const router = useRouter() // 就是vue2中的路由对象
+const route = useRoute() // 路由小实例
+router.push('/list')
+
+
+// 13 v-model:modelValue="自定义属性"
+/**
+vue2中的v-model 是 :value 与 @input的简写
+vue3中的v-model 是 :modelValue 与 @update:modelValue的简写
+使用的时候可以简写成v-model="自定义属性"
+*/
 
 </script>
 
 <template>
         <header ref="headerRef">
-                <SonCom car="传值宝马汽车" :count="count" @get-message="getMessage"></SonCom>
+                <SonCom car="传值宝马汽车" :count="count" @get-message="getMessage" v-model="count"></SonCom>
                 <div>{{ computedList }}</div>
                 <button @click="handleCLickMsg">点击</button>
         </header>
 </template>
 
 <style scoped></style>
+<!-- ./store/modules/user.js -->
