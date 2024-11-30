@@ -62,6 +62,7 @@ const changeCount = inject('changeCount')
 changeCount(200)
 console.log(count)
 
+const reader = new FileReader();   // FileReader是异步读取用户计算机上的文件的api 处理文件/图片
 
 </script>
 
