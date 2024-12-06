@@ -1,5 +1,26 @@
 // 126.35.86.12:21 -> 155.31.66.54:18   由一台服务器中的微信发往另一台服务器中的微信 这就是端口号的解释
 
+// mime资源类型 用于Content-Type中表示类型  [类型]/[子类型]
+/**
+ * html: 'text/html'
+ * css: 'text/css'
+ * javascript: 'text/javascript'
+ * png: 'image/png'
+ * jpg: 'image/jpeg'
+ * gif: 'image/gif'
+ * mp4: 'video/mp4'
+ * mp3: 'audio/mpeg'
+ * json: 'application/json'
+ */
+
+
+
+
+
+
+
+
+
 // 1 导入http模块
 const http = require('http')
 
