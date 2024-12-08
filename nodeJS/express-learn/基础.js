@@ -37,14 +37,22 @@ app.get('/:id.html', (req, res) => {    // 路由占位符 id可以是任意值
     res.end(`匹配所有以/xxx.html的路径  赵书赫`)
 })
 
-
+// 响应
 app.get('/set',(req,res) => {
     // express封装一般响应
     res.status(500)
     res.set('aaa','123')  // express封装的设置响应头的方法
     res.send('你好美丽的小姐')  // 他会自动设置html格式的响应头 无需你自己添加
 
-    // res.status(500).set('aaa','123').send('你好') 支持链式调用
+    res.status(500).set('aaa','123').send('你好') // 支持链式调用
+
+    // express封装其他响应
+    res.redirect('https://www.baidu.com')   // 重定向
+    res.download(__dirname + '/基础.js')   // 下载   不要是./ 是 /
+    res.json({        // 他会自动设置响应头是json响应
+        name: '高广源'   
+    })
+    res.sendFile(__dirname + '/form.html')   // 发送文件内容至网站
 })
 
 app.post('/login', (req, res) => {
