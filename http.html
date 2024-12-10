@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="http://127.0.0.1:9000" method="post">
+        <input type="text" name="username">
+        <input type="text" name="password">
+        <input type="submit" value="提交">
+    </form>
+    <!-- 补充知识点 省略协议主机名直接写url也可以跳转 它会自动凭借我们前面的协议主机名 -->
+    <a href="/search">http://127.0.0.1/search  自动拼接</a>
+
+    <!-- 如果是相对路径也会也当前根链接拼接  -->
+    <a href="../css/search">http://127.0.0.1/css/search 自动拼接</a>
+</body>
+
+</html>

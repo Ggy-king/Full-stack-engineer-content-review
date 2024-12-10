@@ -1,0 +1,16 @@
+form {
+    /* display: flex; */
+    /* flex-direction: column; */
+    width: 800px;
+    height: 400px;
+    padding-top: 10px;
+    padding-left: 100px;
+    background-color: burlywood;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+label {
+    display: block;
+
+}
