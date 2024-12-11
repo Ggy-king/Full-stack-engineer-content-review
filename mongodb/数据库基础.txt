@@ -1,0 +1,29 @@
+终于复习到数据库了 其实没什么好说的 数据库就是创建本地文件缓存我们的信息 就想nodejs中的fs
+
+只是数据库的安全性等更好 
+
+# 1 我的数据库打开服务  mongod --dbpath=/mongodb/data
+
+# 2 我的数据库启动命令窗口 mongo    现在基本不用 使用可视化compass软件
+
+# 3 命令窗口的基本命令
+
+1 show dbs      //查看所有数据库
+2 use 数据库    //使用数据库
+3 db     //查看当前所在数据库
+4 db.dorpDatabase()     //删除当前数据库
+
+5 db.createCollection('集合名称')     //创建集合
+6 show collections     //显示数据库中所有集合
+7 db.集合名.drop()     //删除集合
+8 db.集合名.renameCollection('name')     //重命名集合
+
+# 文档命令
+9 db.集合名.insert(文档对象)     //增加数据
+10 db.集合名.find(对象/条件)     //查找数据
+11 db.集合名.update(条件,新内容)     //更新数据
+12 db.集合名.remove(条件)     //删除数据
+
+
+能和mongodb服务进行交互的有mongo程序 效率肯定不行 所以nodejs中使用mongoose程序进行交互
+ 
