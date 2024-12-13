@@ -67,11 +67,9 @@ function onError(error) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
       process.exit(1);
-      break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
       process.exit(1);
-      break;
     default:
       throw error;
   }
@@ -82,6 +80,7 @@ function onError(error) {
  */
 
 function onListening() {
+  console.log('正在监听');
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
