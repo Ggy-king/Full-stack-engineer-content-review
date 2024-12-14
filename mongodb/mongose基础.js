@@ -76,6 +76,14 @@ mongoose.connection.once('open', () => {   // 连接操作中 once只执行一�
     })
     BookModel.find().then()  // 可以无条件都取出来
     BookModel.find({ author: '雨花' }).then()
+
+
+    BookModel.find({ price: { $gt: 20 } })  // $gt: 20  查找大于20  $lt: 小于 $gte大于等于 $lte小于等于 $ne不等于
+    BookModel.find({ $or: [{},{}] })  // $or: [{},{}] 逻辑或 第一个或第二个
+    BookModel.find({ $and:[{},{}] })  // $and: [{},{}] 逻辑与 两个都满足才返回
+    BookModel.find({ name: /三/})  // 正则表达式 用于模糊查询  找出所以名字有三的数据
+
+
 })
 
 
