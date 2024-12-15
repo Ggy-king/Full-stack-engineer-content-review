@@ -80,7 +80,7 @@ function onError(error) {
  */
 
 function onListening() {
-  console.log('正在监听');
+  console.log('正在监听','数据库未连接');
   var addr = server.address();
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr

@@ -8,8 +8,23 @@ const formidable = require('formidable')   // 这是一个处理多文件上传�
 
 // 获取表单
 const getFormMongo = (req, res, next) => {
-    FormModel.find().sort({data: -1}).exec().then(data => {
-        res.send(data)
+    FormModel.find().sort({ data: -1 }).limit(1).exec().then(data => {
+        // res.send(data)
+        // 常见的后端是返回一个json格式
+        res.json({
+            // 响应编号
+            code: '0000',
+            // 响应信息
+            message: '成功',
+            // 响应数据
+            data: data
+        })
+    }).catch(err => {
+        res.json({
+            code: '1001',
+            message: '失败',
+            data: err
+        })
     })
 }
 
@@ -37,9 +52,24 @@ const setFormMongo = (req, res, next) => {
         FormModel.create({
             ...fields,
             imageUserUrl
+        }).then(data => {
+            res.json({
+                // 响应编号
+                code: '0000',
+                // 响应信息
+                message: '成功',
+                // 响应数据
+                data: data
+            })
+        }).catch(err => {
+            res.json({
+                code: '1001',
+                message: '失败',
+                data: err
+            })
         })
 
-        res.send('OK')
+
 
     });
 }
