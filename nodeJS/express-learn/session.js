@@ -24,6 +24,8 @@ app.use(session({
 
 }))
 
+
+
 // 3 登录  设置session
 app.get('/login', (req, res) => {
     // 拿到query中username与password 
