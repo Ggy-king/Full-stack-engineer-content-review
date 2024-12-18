@@ -126,13 +126,13 @@ const jwt = require('jsonwebtoken')
 // 2 创建token
 // jwt.sign(用户数据,加密字符串 ,配置对象)
 
-// const token = jwt.sign({
-//     username: '赵素葳',
-//     loveFoot: 'noodles'
-// },'ggy',{
-//     expiresIn: 60 //单位秒 这个是token的生命周期
-// })
-// console.log(token);
+const token = jwt.sign({
+    username: '赵素葳',
+    loveFoot: 'noodles'
+},'ggy',{
+    expiresIn: 60 //单位秒 这个是token的生命周期
+})
+console.log(token);
 
 let t = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Iui1tee0oOiRsyIsImxvdmVGb290Ijoibm9vZGxlcyIsImlhdCI6MTczNDQxNTY5MSwiZXhwIjoxNzM0NDE1NzUxfQ.JFqbma-RJXccqQQbjeG2cjugyE-8cev-DZxEg7eEFf4'
 

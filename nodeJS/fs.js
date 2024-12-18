@@ -103,7 +103,7 @@ fs.stat('../AI编程/简介.txt', (err, data) => {
 })
 
 
-// -----10   __dirname  保存代码所在目录的绝对路径 就是文件在哪，它就记录哪的文件路径
+// -----11   __dirname  保存代码所在目录的绝对路径 就是文件在哪，它就记录哪的文件路径
 fs.writeFile(__dirname + '/index.html','love')
 
 

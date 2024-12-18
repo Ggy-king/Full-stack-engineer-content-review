@@ -7,7 +7,7 @@
  * url
  * http
  * util
- * consoleg
+ * console
  * 定时器
  * path
  */
