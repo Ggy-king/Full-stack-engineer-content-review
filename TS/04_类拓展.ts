@@ -73,6 +73,6 @@ class StanderPackage extends Package {  // 想要继承抽象类 那里面必须
     }
 }
 
-const s1 = new StanderPackage(10,5)
+const s1 = new StanderPackage(10, 5)
 s1.printPackage()
 
