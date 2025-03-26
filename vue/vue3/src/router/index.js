@@ -3,7 +3,7 @@ import {useTokenStore} from '@/store'
 
 const router = createRouter({
   //   history就是vue2的mode 两种路由模式 history是createWebHistory() hash是createWebHashHistory()
-  // import.meta.env 是vite环境变量 BASE_URL是根地址可以去vite中配置
+  //   import.meta.env 是vite环境变量 BASE_URL是根地址可以去vite中配置
   history: createWebHistory(import.meta.env.BASE_URL),    // 传的参数是地址 默认是'/'表示前缀
 
   routes: [

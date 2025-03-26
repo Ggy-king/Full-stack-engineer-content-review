@@ -36,6 +36,6 @@ export const useUserStore =  defineStore('users',() => {
     persist: {  // 想要开启并有其他配置 改成对象写法就行了
         key: 'new-user-persist',   // 更改localStorage中的键名
         storage: 'sessionStorage', // 默认存的是localStorage 可以改成sessionStorage
-        paths: ['username','obj.name'],   // state中哪些数据需要持久化
+        pick: ['username','obj.name'],   // state中哪些数据需要持久化
     },  
 })
