@@ -1,4 +1,4 @@
-<!-- 版本 -->
+ <!-- 版本 -->
 <!-- 233  vue2 vue-router3 vuex3 -->
 <!-- 344  vue3 vue-router4 vuex4 -->
 <template>
