@@ -44,6 +44,7 @@ const router = new VueRouter({  // 创建路由实例对象
 // 需要权限才能看的页面
 const authUrls = ['/my', '/shop']
 
+
 // 路由前置导航守卫 也就是在路由跳转前判断哪些页面可以跳转
 // to 到哪去 from 从哪来 next()直接放行 next(路径)进行拦截
 router.beforeEach((to, from, next) => {

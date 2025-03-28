@@ -76,6 +76,7 @@ export default {
     // 组件名:组件对象 最好是统一命名
     AppHeader,
   },
+  
   data() {
     return {
       isLoading: true,
